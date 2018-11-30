@@ -12,6 +12,7 @@ public class FacebookLiteApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("login_page.fxml"));
         Scene scene = new Scene(root);
 
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

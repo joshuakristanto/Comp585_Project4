@@ -4,25 +4,25 @@
  * and open the template in the editor.
  */
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
  *
  * @author Oscar
  */
-public class LoginPageController implements Initializable {
+public class LoginPageController {
     
     @FXML
     private TextField login_username;
@@ -35,6 +35,9 @@ public class LoginPageController implements Initializable {
     
     @FXML
     private Button sign_up_button;
+
+    @FXML
+    private Label login_IncorrectInfo;
     
     @FXML
     private void loadSignUpPage(ActionEvent event) throws IOException{
@@ -42,7 +45,12 @@ public class LoginPageController implements Initializable {
         Parent signUpPageParent = FXMLLoader.load(getClass().getResource("sign_up_page.fxml"));
         Scene signUpPageScene = new Scene(signUpPageParent);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
+
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - 1000) / 2);
+        stage.setY((screenBounds.getHeight() - 1000) / 2);
+
+        stage.setResizable(false);
         stage.setScene(signUpPageScene);
         stage.show();
     }
@@ -51,9 +59,13 @@ public class LoginPageController implements Initializable {
     private void checkCredentials(ActionEvent event) throws IOException{
         System.out.println("Login button pressed");
         // TODO Check password, call encryption method here
-        //If password correct log in
-        //Else warn user incorrect password
-        loadUserDashBoard(event);
+        if(true){
+            //If password correct log in
+            loadUserDashBoard(event);
+        }
+        else{
+            login_IncorrectInfo.setVisible(true);
+        }
     }
 
     private void loadUserDashBoard(ActionEvent event) throws IOException{
@@ -62,13 +74,20 @@ public class LoginPageController implements Initializable {
         Scene signUpPageScene = new Scene(signUpPageParent);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - 1920) / 2);
+        stage.setY((screenBounds.getHeight() - 1080) / 2);
+
+        stage.setResizable(false);
         stage.setScene(signUpPageScene);
         stage.show();
     }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+    private String getUsername(){
+        return login_username.getText();
+    }
+
+    private String getPassword(){
+        return login_password.getText();
+    }
 }
