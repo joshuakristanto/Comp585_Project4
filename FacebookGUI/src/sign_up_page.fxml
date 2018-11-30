@@ -22,11 +22,7 @@
                <font>
                   <Font size="20.0" />
                </font></TextField>
-            <DatePicker fx:id="sign_up_birthday" editable="false" layoutX="265.0" layoutY="345.0" prefHeight="45.0" prefWidth="470.0" promptText="Birthday">
-                <font>
-                    <Font size="22.0" />
-                </font>
-            </DatePicker>
+            <DatePicker fx:id="sign_up_birthday" editable="false" layoutX="265.0" layoutY="345.0" prefHeight="45.0" prefWidth="470.0" promptText="Birthday"/>
             <TextField fx:id="sign_up_email" layoutX="265.0" layoutY="424.0" prefHeight="45.0" prefWidth="470.0" promptText="example@domain.com">
                <font>
                   <Font size="20.0" />
@@ -39,7 +35,7 @@
                <font>
                   <Font size="20.0" />
                </font></PasswordField>
-            <PasswordField fx:id="sign_up_confirmPassword" layoutX="266.0" layoutY="670.0" onKeyTyped="#matchPasswords" prefHeight="45.0" prefWidth="470.0" promptText="Confirm Password">
+            <PasswordField fx:id="sign_up_confirmPassword" layoutX="266.0" layoutY="670.0" onKeyReleased="#matchPasswords" prefHeight="45.0" prefWidth="470.0" promptText="Confirm Password">
                <font>
                   <Font size="20.0" />
                </font></PasswordField>

@@ -105,12 +105,18 @@ public class SignUpPageController {
         if(sign_up_password.getText().equals("") || sign_up_confirmPassword.getText().equals("")){
             passwordMatches.setVisible(false);
             passwordDoesntMatch.setVisible(false);
+            sign_up_password.setStyle("-fx-border-color: #DCDCDC;");
+            sign_up_confirmPassword.setStyle("-fx-border-color: #DCDCDC;");
         }else if(sign_up_password.getText().equals(sign_up_confirmPassword.getText())) {
             passwordDoesntMatch.setVisible(false);
             passwordMatches.setVisible(true);
+            sign_up_password.setStyle("-fx-border-color: #00FF3C;");
+            sign_up_confirmPassword.setStyle("-fx-border-color: #00FF3C;");
         }else{
             passwordMatches.setVisible(false);
             passwordDoesntMatch.setVisible(true);
+            sign_up_password.setStyle("-fx-border-color: red;");
+            sign_up_confirmPassword.setStyle("-fx-border-color: red;");
         }
     }
 
@@ -125,7 +131,7 @@ public class SignUpPageController {
             sign_up_username.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
             username_avail.setVisible(false);
         }else{
-            sign_up_username.setStyle("-fx-border-color: green; -fx-text-inner-color: green;");
+            sign_up_username.setStyle("-fx-border-color: #00FF3C; -fx-text-inner-color: #00FF3C;");
             username_avail.setVisible(false);
         }
     }
