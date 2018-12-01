@@ -2,13 +2,13 @@ class Profile
 {
     private User user;  // declared
     private Wall wall;
-    private Friends friends;
+    private Friend friends;
     
     public Profile(String firstName , String lastName , int age)
     {
         user = new User(firstName , lastName , age);  // initialized by constructor
         wall = new Wall();
-        friends = new Friends();
+        friends = new Friend();
     }
     
     public void printProfile()
@@ -49,7 +49,7 @@ class Profile
         wall.addPost(input);
     }
     
-    public Friends getFriends()
+    public Friend getFriends()
     {
         return friends;
     }
