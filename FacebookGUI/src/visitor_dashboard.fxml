@@ -5,13 +5,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-
 <TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <SplitPane dividerPositions="0.20986460348162475" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
+                  <Button layoutX="1824.0" layoutY="166.0" mnemonicParsing="false" text="Settings" />
                   <Button layoutX="1748.0" layoutY="7.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="164.0" text="Logout" />
                   <Label layoutX="37.0" layoutY="19.0" text="First Name">
                      <font>

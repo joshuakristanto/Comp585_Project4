@@ -377,6 +377,7 @@ class FacebookLite
     }
 
     
+    /*
     public static void main(String[] args)
     {
         connect();
@@ -907,7 +908,6 @@ class FacebookLite
         
     */
     }
-
 
 }
 
