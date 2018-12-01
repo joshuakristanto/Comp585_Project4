@@ -1,4 +1,4 @@
-class Friends implements IDisplay
+class Friend implements IDisplay
 {
     private Stack friends;
     //private String[] friends;
@@ -6,7 +6,7 @@ class Friends implements IDisplay
     private boolean isfriendsVis;
     private int NOF;  // number of friends
     
-    public Friends()
+    public Friend()
     {
         friends = new Stack(10);
         //index = -1;
@@ -61,7 +61,7 @@ class Friends implements IDisplay
     
     public void display()
     {
-        Util.print("Friends:");
+        Util.print("Models.Friends:");
         if (isfriendsVis) //&& !isEmpty())
         {
             /*

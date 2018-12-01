@@ -47,7 +47,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Label layoutX="231.0" layoutY="14.0" text="Friends List" />
+                              <Label layoutX="231.0" layoutY="14.0" text="Models.Friends List" />
                               <ScrollPane layoutX="34.0" layoutY="45.0" prefHeight="735.0" prefWidth="504.0">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="733.0" prefWidth="502.0">
@@ -61,7 +61,7 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Label layoutX="645.0" layoutY="14.0" text="Posts" />
+                              <Label layoutX="645.0" layoutY="14.0" text="Models.Posts" />
                               <ScrollPane layoutX="30.0" layoutY="45.0" prefHeight="733.0" prefWidth="1287.0">
                                  <content>
                                     <ListView prefHeight="730.0" prefWidth="1285.0" />

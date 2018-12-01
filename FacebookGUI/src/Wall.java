@@ -61,7 +61,7 @@ class Wall implements IDisplay
     
     public void display()
     {
-        Util.print("Posts:");
+        Util.print("Models.Posts:");
         if (isPostsVis) //&& !isEmpty())
         {
             /*

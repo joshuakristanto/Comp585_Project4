@@ -1,3 +1,12 @@
+import DAO.FriendsDao;
+import DAO.PostsDao;
+import DAO.ProfilesDao;
+import DAO.SettingsDao;
+import Models.Friends;
+import Models.Posts;
+import javafx.collections.ObservableList;
+import util.DbUtil;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -79,7 +88,7 @@ class FacebookLite
         }
         else
         {
-            Util.print("Profiles:");
+            Util.print("Models.Profiles:");
             for (int x = 0 ; x < nop ; x++)
             {
                 Util.print(x + ": " + profiles[x].getUser().getFullName());
@@ -348,7 +357,7 @@ class FacebookLite
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:sample.db";
+            String url = "jdbc:sqlite:fbLiteInfo.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -371,6 +380,197 @@ class FacebookLite
     public static void main(String[] args)
     {
         connect();
+
+        try {
+            DbUtil.dbExecuteQuery("SELECT * FROM Posts");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
+        try {
+            ObservableList<Friends> FriendsData = FriendsDao.searchFriends("rc1138");
+            System.out.println(FriendsData);
+            for (int i = 0; i < FriendsData.size(); i++) {
+                System.out.println(FriendsData.get(i).getFriendUserName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /*
+        // insert usage
+        try {
+
+           // FriendsDao.insertFriend("jk2018","newGuy1");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        */
+
+        //
+
+
+
+        ////// delete demonstration
+        /*
+        try {
+         // FriendsDao.deleteFriend("jk2018","newGuy1");
+            FriendsDao.deleteFriend("newGuy1","jk2018");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        */
+
+        /////////////////////////////////////// PostsDAO usage
+
+
+        ///// get post demonstration
+        try {
+            ObservableList<Posts> PostsData = PostsDao.searchPosts("mattN123");
+            System.out.println(PostsData);
+            for (int i = 0; i < PostsData.size(); i++) {
+                System.out.println(PostsData.get(i).getUserName());
+                System.out.println(PostsData.get(i).getPostText());
+                System.out.println(PostsData.get(i).getPostTime());
+                System.out.println(" ");
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ////// add demonstration
+        /*
+        try {
+             PostsDao.insertPosts("rc1138","First time adding a post to the database");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        */
+
+
+        ///// delete demonstration
+        /*
+        try {
+            // FriendsDao.deleteFriend("jk2018","newGuy1");
+            PostsDao.deletePosts("rc1138","First time adding a post to the database");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        */
+
+
+/////////////////////////////////////////////// Profiles dao
+
+// deleting a profile
+        try {
+
+            ProfilesDao.deleteProfiles("ks33333");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+/// update password
+        try {
+
+            ProfilesDao.updatePassword("rc1138", "fffffffffffffffffggggggggggg");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+/// update status
+        try {
+
+            ProfilesDao.updateStatus("rc1138", "this was a new status i changed");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+/// add profile
+
+        try {
+
+            ProfilesDao.addProfile("Bob", "Semple", "01/19/1999", "ks222", "bob@gmail", "kksnlnlknk", "new user status", "Y");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+/////////////////////////////////////////////// settings dao
+
+
+        // updating Friend in settings
+        try {
+            // FriendsDao.deleteFriend("jk2018","newGuy1");
+            SettingsDao.updateFriendsVisible("rc1138","N");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+       // updating status
+        try {
+            // FriendsDao.deleteFriend("jk2018","newGuy1");
+            SettingsDao.updateStatusVisible("rc1138","N");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // updating posts
+        try {
+            // FriendsDao.deleteFriend("jk2018","newGuy1");
+            SettingsDao.updatePostsVisible("rc1138","N");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+       // updating age
+        try {
+            // FriendsDao.deleteFriend("jk2018","newGuy1");
+            SettingsDao.updateAgeVisible("rc1138","N");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+/*
         FacebookLite fbl = new FacebookLite();
         Scanner keyboard = new Scanner(System.in);
         int opt = -1; // option provided by user
@@ -414,7 +614,7 @@ class FacebookLite
                         //}
                         //else
                         //{
-                            //Util.print("No Profiles to save");
+                            //Util.print("No Models.Profiles to save");
                         //}
                         Util.print("Exiting App");
                         break;
@@ -486,14 +686,14 @@ class FacebookLite
                         }
                         else if (fbl.getNOPS() == 0)
                         {
-                            Util.print("No Profiles");
+                            Util.print("No Models.Profiles");
                         }
                         break;
                     case 3: // delete all profiles
                         if (fbl.getNOPS() > 0)
                         {
                             fbl.deleteAllProfiles();
-                            Util.print("Profiles cleared");
+                            Util.print("Models.Profiles cleared");
                         }
                         else
                         {
@@ -705,8 +905,10 @@ class FacebookLite
         
         keyboard.close();
         
-        
+    */
     }
+
+
 }
 
 
