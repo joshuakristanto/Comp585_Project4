@@ -377,7 +377,7 @@ class FacebookLite
     }
 
     
-    /*
+
     public static void main(String[] args)
     {
         connect();
@@ -427,7 +427,7 @@ class FacebookLite
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        */
+
 
         /////////////////////////////////////// PostsDAO usage
 
@@ -487,6 +487,7 @@ class FacebookLite
         }
 
 /// update password
+        /*
         try {
 
             ProfilesDao.updatePassword("rc1138", "fffffffffffffffffggggggggggg");
@@ -496,6 +497,7 @@ class FacebookLite
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
 
 /// update status
         try {
@@ -510,6 +512,7 @@ class FacebookLite
 
 /// add profile
 
+        /*
         try {
 
             ProfilesDao.addProfile("Bob", "Semple", "01/19/1999", "ks222", "bob@gmail", "kksnlnlknk", "new user status", "Y");
@@ -519,6 +522,7 @@ class FacebookLite
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
 
 /////////////////////////////////////////////// settings dao
 
@@ -566,6 +570,67 @@ class FacebookLite
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+
+
+        ///////// heres how encyption works NEEDS TO BE DONE WHEREEVER WE CREATE A NEW PROFILE
+
+        /*
+        String userInputedPassword = "rick";
+
+String encryptedPassword = PasswordEncryption.generatePassword(userInputedPassword);
+
+
+        try {
+
+            ProfilesDao.addProfile("ron", "swonson", "01/19/1999", "meat22", "ron@gmail", encryptedPassword, "new user status", "Y");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+*/
+
+
+/*
+        boolean isValid = PasswordEncryption.checkPassword("newguy1w", "Bubbles");
+if(isValid) {
+    System.out.println("The passwords were the same");
+} else {
+    System.out.println("password was not the same");
+
+}
+*/
+
+
+
+// for reset
+        /*
+try{
+
+    PasswordEncryption.resetPassword("mattN123", "bill");
+    PasswordEncryption.resetPassword("jk2018", "orange");
+    PasswordEncryption.resetPassword("os1111", "blue");
+    PasswordEncryption.resetPassword("ks222", "sick123");
+    PasswordEncryption.resetPassword("newguy1w", "blaze420");
+
+} catch(Exception e) {
+
+}
+*/
+
+
+        Boolean isPasswordEqual = PasswordEncryption.checkPassword("ks222", "sick123");
+
+        if(isPasswordEqual) {
+            System.out.println("PASSWORD IS VALID" );
+        } else {
+            System.out.println("wrong password");
+        }
+
 
 
 
