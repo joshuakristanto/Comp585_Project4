@@ -21,9 +21,9 @@ public class SettingsDao {
 
 
     ////// get list of settings from a UserName
-    public static ObservableList<Settings> searchProfiles(String UserName) throws Exception, ClassNotFoundException {
+    public static ObservableList<Settings> searchSettings(String UserName) throws Exception, ClassNotFoundException {
         //this is the SELECT statement
-        String selectStmt = "SELECT * FROM Posts WHERE UserName = " + "'" + UserName + "'";
+        String selectStmt = "SELECT * FROM Settings WHERE UserName = " + "'" + UserName + "'";
 
         // execute select statement
         try {

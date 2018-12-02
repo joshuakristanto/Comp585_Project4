@@ -28,7 +28,7 @@ public class ProfilesDao {
     /// returns a profile object based the UserName
     public static ObservableList<Profiles> searchProfiles(String UserName) throws Exception, ClassNotFoundException {
         //this is the SELECT statement
-        String selectStmt = "SELECT * FROM Posts WHERE UserName = " + "'" + UserName + "'";
+        String selectStmt = "SELECT * FROM Profiles WHERE UserName = " + "'" + UserName + "'";
 
         // execute select statement
         try {
@@ -74,7 +74,7 @@ public class ProfilesDao {
     ///////////// will return ALL profiles in a list
     public static ObservableList<Profiles> getAllProfiles(String UserName) throws Exception, ClassNotFoundException {
         //this is the SELECT statement
-        String selectStmt = "SELECT * FROM Posts";
+        String selectStmt = "SELECT * FROM Profiles";
 
         // execute select statement
         try {
