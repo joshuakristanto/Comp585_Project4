@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import Models.Profiles;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import DAO.*;
+import util.PasswordEncryption;
 
 /**
  * FXML Controller class
@@ -67,7 +71,10 @@ public class SignUpPageController {
     private void registerUser (ActionEvent event) throws Exception{
         //TODO Using DAO objects pass data to DB
         //TODO Let user know if account creation was successful
-        //Returns back to login after account creation
+
+        String encryptedPassword = PasswordEncryption.generatePassword(getPassword());
+        ProfilesDao.addProfile(getFirstName(), getLastName(), getBirthday(), getUserName(), getEmail(), encryptedPassword, "", "Y");
+
         Parent signUpPageParent = FXMLLoader.load(getClass().getResource("login_page.fxml"));
         Scene signUpPageScene = new Scene(signUpPageParent);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -121,19 +128,49 @@ public class SignUpPageController {
     }
 
     @FXML
-    private void checkUsername(){
-        // TODO Check DB if username already exits if so warn user.
-        if(!sign_up_username.getText().equals("username")){ // Username is taken
-            sign_up_username.setStyle("-fx-border-color: red; -fx-text-inner-color: red;");
-            username_avail.setVisible(true);
+    private void checkUsername() {
+        try{
+            // Checks if username is in the DB
+            ObservableList<Profiles> prof = ProfilesDao.searchProfiles(getUserName());
 
-        }else if(sign_up_username.getText().equals("")){
-            sign_up_username.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
-            username_avail.setVisible(false);
-        }else{
-            sign_up_username.setStyle("-fx-border-color: #00FF3C; -fx-text-inner-color: #00FF3C;");
-            username_avail.setVisible(false);
+            if(prof.size() > 0){ // Username is taken
+                sign_up_username.setStyle("-fx-border-color: red; -fx-text-inner-color: red;");
+                username_avail.setVisible(true);
+
+            }else if(sign_up_username.getText().equals("")){
+                sign_up_username.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
+                username_avail.setVisible(false);
+            }else{
+                sign_up_username.setStyle("-fx-border-color: #00FF3C; -fx-text-inner-color: #00FF3C;");
+                username_avail.setVisible(false);
+            }
+        } catch (Exception e){
+
         }
     }
 
+    //Getters
+    private String getFirstName(){
+        return sign_up_firstName.getText();
+    }
+
+    private String getLastName(){
+        return sign_up_lastName.getText();
+    }
+
+    private String getBirthday(){
+        return sign_up_birthday.getValue().toString();
+    }
+
+    private String getEmail(){
+        return sign_up_email.getText();
+    }
+
+    private String getPassword(){
+        return sign_up_confirmPassword.getText();
+    }
+
+    private String getUserName(){
+        return sign_up_username.getText();
+    }
 }

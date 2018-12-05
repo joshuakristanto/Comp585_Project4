@@ -1,3 +1,6 @@
+import DAO.ProfilesDao;
+import Models.CurrentUser;
+import Models.Profiles;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,8 +27,6 @@ import java.util.ResourceBundle;
 
 public class UserDashBoardController implements Initializable {
 
-
-    @Override
     public void initialize(URL location, ResourceBundle resources) {
         udb_PostsTableView = new TableView<>();
         udb_FriendsListView = new ListView();
@@ -58,6 +59,8 @@ public class UserDashBoardController implements Initializable {
     @FXML
     private ListView udb_FriendsListView;
 
+    @FXML
+    private Label username_key;
 
     @FXML
     private Button udb_NewPostButton;
@@ -168,20 +171,24 @@ public class UserDashBoardController implements Initializable {
         return udb_EmailLabel.getText();
     }
 
-    //Setters
-    private void setFirstNameLabel(String firstName){
-        udb_firstNameLabel.setText(firstName);
+    // Setter
+    public void setUsername(String user){
+        username_key.setText(user);
     }
 
-    private void setLastNameLabel(String lastName){
-        udb_lastNameLabel.setText(lastName);
-    }
+    private void init(){
 
-    private void setAgeLabel(String age){
-        udb_AgeLabel.setText(age);
-    }
+        try{
 
-    private void setEmailLabel(String email){
-        udb_EmailLabel.setText(email);
+            ObservableList<CurrentUser> curr = ProfilesDao.searchCurrUser();
+
+            String curruser = curr.get(0).getCurrUserName();
+
+
+
+        } catch(Exception e) {
+
+        }
+
     }
 }
