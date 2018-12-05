@@ -1,6 +1,9 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -8,14 +11,25 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class UserDashBoardController {
+public class UserDashBoardController implements Initializable {
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        udb_PostsTableView = new TableView<>();
+        udb_FriendsListView = new ListView();
+    }
 
     @FXML
     private Button udb_logoutButton;
@@ -44,11 +58,24 @@ public class UserDashBoardController {
     @FXML
     private ListView udb_FriendsListView;
 
-    @FXML
-    private ListView udb_PostsListView;
 
     @FXML
     private Button udb_NewPostButton;
+
+    @FXML
+    private TextArea udb_postTextArea;
+
+    @FXML
+    private TableView<String> udb_PostsTableView;
+
+    @FXML
+    private Button udb_DeletePost;
+
+    @FXML
+    private TextField udb_friendsUsername;
+
+    @FXML
+    private Button udb_addFriend;
 
 
     @FXML
@@ -64,6 +91,7 @@ public class UserDashBoardController {
 
         stage.setResizable(false);
         stage.setScene(signUpPageScene);
+        stage.setTitle("Login");
         stage.show();
     }
 
@@ -79,6 +107,7 @@ public class UserDashBoardController {
 
         stage.setResizable(false);
         stage.setScene(signUpPageScene);
+        stage.setTitle("Settings");
         stage.show();
     }
 
@@ -97,4 +126,62 @@ public class UserDashBoardController {
         }
     }
 
+    @FXML
+    private void publishNewPost(){
+
+    }
+
+    @FXML
+    private void deleteFriend(){
+
+    }
+
+    @FXML
+    private void addFriend(ActionEvent event){
+        ObservableList<String> friendsList = FXCollections.observableArrayList();
+        System.out.println("Add Friend pressed.");
+        if(!udb_friendsUsername.getText().equals("")){
+            String username = udb_friendsUsername.getText();
+            System.out.println(username);
+            //TODO check if username exists in the DB
+            //If yes, then add user
+            //else, prompt user that username doesn't exist
+            friendsList.add(username);
+            udb_FriendsListView.setItems(friendsList);
+        }
+    }
+
+    //Getters
+    private String getFirstNameLabel(){
+        return udb_firstNameLabel.getText();
+    }
+
+    private String getLastNameLabel(){
+        return udb_lastNameLabel.getText();
+    }
+
+    private String getAgeLabel(){
+        return udb_AgeLabel.getText();
+    }
+
+    private String getEmail(){
+        return udb_EmailLabel.getText();
+    }
+
+    //Setters
+    private void setFirstNameLabel(String firstName){
+        udb_firstNameLabel.setText(firstName);
+    }
+
+    private void setLastNameLabel(String lastName){
+        udb_lastNameLabel.setText(lastName);
+    }
+
+    private void setAgeLabel(String age){
+        udb_AgeLabel.setText(age);
+    }
+
+    private void setEmailLabel(String email){
+        udb_EmailLabel.setText(email);
+    }
 }

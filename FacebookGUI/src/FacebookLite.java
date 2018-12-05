@@ -18,14 +18,15 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileWriter;
 
+
 class FacebookLite
 {
+
     private Profile[] profiles;
     private int index;
     private int nop; // number of profiles
     
-    public FacebookLite()
-    {
+    public FacebookLite() throws Exception {
         profiles = new Profile[10];
         index = -1;
         nop = 0;
@@ -377,7 +378,7 @@ class FacebookLite
     }
 
     
-    /*
+
     public static void main(String[] args)
     {
         connect();
@@ -908,8 +909,6 @@ class FacebookLite
         
     */
     }
-
 }
-
 
 
