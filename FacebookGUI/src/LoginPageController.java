@@ -15,15 +15,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import util.PasswordEncryption;
 
 /**
  *
  * @author Oscar
  */
 public class LoginPageController {
-    
+
     @FXML
     private TextField login_username;
     
@@ -60,7 +62,8 @@ public class LoginPageController {
     private void checkCredentials(ActionEvent event) throws IOException{
         System.out.println("Login button pressed");
         // TODO Check password, call encryption method here
-        if(true){
+        Boolean checker = PasswordEncryption.checkPassword(getUsername(), getPassword());
+        if(checker){
             //If password correct log in
             loadUserDashBoard(event);
         }
@@ -71,9 +74,11 @@ public class LoginPageController {
 
     private void loadUserDashBoard(ActionEvent event) throws IOException{
         System.out.println("You logged in!");
-        Parent signUpPageParent = FXMLLoader.load(getClass().getResource("user_dashboard.fxml"));
-        Scene signUpPageScene = new Scene(signUpPageParent);
+        Parent loader = FXMLLoader.load(getClass().getResource("user_dashboard.fxml"));
+
+        Scene signUpPageScene = new Scene(loader);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - 1920) / 2);
@@ -81,7 +86,7 @@ public class LoginPageController {
 
         stage.setResizable(false);
         stage.setScene(signUpPageScene);
-        stage.setTitle("User Dashboard");
+        stage.setTitle(getUsername() + " Dashboard");
         stage.show();
     }
 

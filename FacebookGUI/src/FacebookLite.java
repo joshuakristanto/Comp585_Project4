@@ -1,16 +1,14 @@
 import DAO.FriendsDao;
-import DAO.PostsDao;
 import DAO.ProfilesDao;
 import DAO.SettingsDao;
 import Models.Friends;
-import Models.Posts;
 import javafx.collections.ObservableList;
 import util.DbUtil;
+import util.PasswordEncryption;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Scanner;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -579,7 +577,7 @@ class FacebookLite
         /*
         String userInputedPassword = "rick";
 
-String encryptedPassword = PasswordEncryption.generatePassword(userInputedPassword);
+String encryptedPassword = util.PasswordEncryption.generatePassword(userInputedPassword);
 
 
         try {
@@ -597,7 +595,7 @@ String encryptedPassword = PasswordEncryption.generatePassword(userInputedPasswo
 
 
 /*
-        boolean isValid = PasswordEncryption.checkPassword("newguy1w", "Bubbles");
+        boolean isValid = util.PasswordEncryption.checkPassword("newguy1w", "Bubbles");
 if(isValid) {
     System.out.println("The passwords were the same");
 } else {
@@ -612,11 +610,11 @@ if(isValid) {
         /*
 try{
 
-    PasswordEncryption.resetPassword("mattN123", "bill");
-    PasswordEncryption.resetPassword("jk2018", "orange");
-    PasswordEncryption.resetPassword("os1111", "blue");
-    PasswordEncryption.resetPassword("ks222", "sick123");
-    PasswordEncryption.resetPassword("newguy1w", "blaze420");
+    util.PasswordEncryption.resetPassword("mattN123", "bill");
+    util.PasswordEncryption.resetPassword("jk2018", "orange");
+    util.PasswordEncryption.resetPassword("os1111", "blue");
+    util.PasswordEncryption.resetPassword("ks222", "sick123");
+    util.PasswordEncryption.resetPassword("newguy1w", "blaze420");
 
 } catch(Exception e) {
 
@@ -633,6 +631,28 @@ try{
         }
 
 
+        try {
+            ProfilesDao.updateAge("ocasarez", "01/17/2019");
+
+        } catch(Exception e) {
+
+        }
+
+        //try {
+          //  String username = "rc1138";
+            //ProfilesDao.addCurrentUser(username);
+
+        //} catch(Exception e) {
+
+        //}
+
+        try {
+            String username = "rc1138";
+            ProfilesDao.deleteCurrentUser(username);
+
+        } catch(Exception e) {
+
+        }
 
 
 
