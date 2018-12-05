@@ -1,3 +1,5 @@
+import DAO.FriendsDao;
+import java.sql.SQLException;
 class Friend implements IDisplay
 {
     private Stack friends;
@@ -5,10 +7,11 @@ class Friend implements IDisplay
     //private int index;  // keep track of friends --- set to -1 to prevent crashes and know when array is empty because position zero is used by user for friends
     private boolean isfriendsVis;
     private int NOF;  // number of friends
-    
+    private FriendsDao friendDB;
     public Friend()
     {
         friends = new Stack(10);
+        friendDB = new FriendsDao();
         //index = -1;
         isfriendsVis = true;
         //Util.init(friends);
@@ -33,6 +36,17 @@ class Friend implements IDisplay
             friends[++index] = friend;  // do index++ \n friends[index] = friend;
         }
         */
+        /*
+        try {
+
+            friendDB.insertFriend("User", friend);
+            friends.push(friend);
+            NOF++;
+        }
+        catch(Exception e)
+        {
+
+        }*/
         friends.push(friend);
         NOF++;
     }

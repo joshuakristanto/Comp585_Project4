@@ -1,5 +1,7 @@
+
 import DAO.ProfilesDao;
 import Models.CurrentUser;
+
 import Models.Profiles;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,13 +25,32 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import DAO.*;
 
 
 public class UserDashBoardController implements Initializable {
 
+private FriendsDao friendDB;
+private ProfilesDao profileDB;
+private SettingsDao settingsDB;
+private PostsDao postsDB;
+
+private LoginPageController user;
+private String userName;
+    @Override
+
     public void initialize(URL location, ResourceBundle resources) {
         udb_PostsTableView = new TableView<>();
         udb_FriendsListView = new ListView();
+        friendDB = new FriendsDao();
+        profileDB = new ProfilesDao();
+        settingsDB = new SettingsDao();
+      //  userName =  user.getUsername();
+        //System.out.println(userName);
+
+
+
+
     }
 
     @FXML
@@ -132,11 +153,27 @@ public class UserDashBoardController implements Initializable {
     @FXML
     private void publishNewPost(){
 
+
     }
 
     @FXML
-    private void deleteFriend(){
+    private void deleteFriend() {
 
+
+        if (!udb_friendsUsername.getText().equals("")) {
+            String username = udb_friendsUsername.getText();
+            try {
+
+                friendDB.deleteFriend(this.userName, username);
+
+            }
+
+
+        catch(Exception e)
+        {
+
+        }
+    }
     }
 
     @FXML
@@ -149,6 +186,13 @@ public class UserDashBoardController implements Initializable {
             //TODO check if username exists in the DB
             //If yes, then add user
             //else, prompt user that username doesn't exist
+            try{
+
+                friendDB.insertFriend(this.userName, username);
+            }
+            catch (Exception e){
+                System.out.println("Adding Friend has an error Occured");
+            }
             friendsList.add(username);
             udb_FriendsListView.setItems(friendsList);
         }
@@ -171,9 +215,16 @@ public class UserDashBoardController implements Initializable {
         return udb_EmailLabel.getText();
     }
 
+
+
+    //Setters
+    private void setFirstNameLabel(String firstName){
+        udb_firstNameLabel.setText(firstName);
+
     // Setter
     public void setUsername(String user){
         username_key.setText(user);
+
     }
 
     private void init(){
@@ -191,4 +242,5 @@ public class UserDashBoardController implements Initializable {
         }
 
     }
+
 }
