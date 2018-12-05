@@ -1,5 +1,6 @@
 package DAO;
 
+import Models.CurrentUser;
 import Models.Posts;
 import Models.Profiles;
 import javafx.collections.FXCollections;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
+import util.PasswordEncryption;
 public class ProfilesDao {
 
 
@@ -132,9 +133,9 @@ public class ProfilesDao {
 
     public static void updatePassword(String UserName, String newPassword) throws SQLException, ClassNotFoundException {
 
-
+        String newEncyptedPassowrd = PasswordEncryption.generatePassword(newPassword);
         // update statement
-        String updateStmt = "UPDATE Profiles SET Password = " + "'" + newPassword + "'" + " WHERE UserName = " + "'" + UserName + "'";
+        String updateStmt = "UPDATE Profiles SET Password = " + "'" + newEncyptedPassowrd + "'" + " WHERE UserName = " + "'" + UserName + "'";
         // this will update the passsword
         try {
             DbUtil.dbExecuteUpdate(updateStmt);
@@ -175,6 +176,80 @@ public class ProfilesDao {
             throw e;
         }
     }
+
+    public static void addCurrentUser(String UserName) throws SQLException, ClassNotFoundException {
+
+        // add the time of the posts
+        String newPostTime = new SimpleDateFormat("MM/dd/yyyy_HH:mm:ss").format(Calendar.getInstance().getTime());
+
+        // the addStmt
+        String addStmt = "INSERT INTO CurrentUser(LoggedUser) VALUES(" + "'" + UserName + "'" + ")";
+
+        // add operation
+        try {
+            DbUtil.dbExecuteUpdate(addStmt);
+
+        } catch (SQLException e) {
+            System.out.print("Error occurred while Operation: " + e);
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteCurrentUser(String UserName) throws SQLException, ClassNotFoundException {
+        // delete statement
+        String deleteStmt = "DELETE FROM CurrentUser WHERE LoggedUser = " + "'" + UserName + "'";
+
+        // this will delete the PostText
+        try {
+            DbUtil.dbExecuteUpdate(deleteStmt);
+
+        } catch (SQLException e) {
+            System.out.print("Error occurred while DELETE Operation: " + e);
+            throw e;
+        }
+    }
+
+
+
+    public static ObservableList<CurrentUser> searchCurrUser() throws Exception, ClassNotFoundException {
+        //this is the SELECT statement
+        String selectStmt = "SELECT * FROM CurrentUser";
+
+        // execute select statement
+        try {
+            // getting the resultset containing the friends that will be iterated over
+            ResultSet resProfiles = DbUtil.dbExecuteQuery(selectStmt);
+
+            //Send ResultSet to the getEmployeeList method and get employee object
+            ObservableList<CurrentUser> currList = getCurrUserList(resProfiles);
+
+            // return the friend  object
+            return currList;
+        } catch (Exception e) {
+            System.out.println("SQL select in friendsDao failed: " + selectStmt);
+            throw e;
+        }
+    }
+
+    // returns the Select * From Posts operation to objects
+    private static ObservableList<CurrentUser> getCurrUserList(ResultSet resSet) throws Exception, ClassNotFoundException {
+        //an observable List containing Employee objects
+        ObservableList<CurrentUser> currList = FXCollections.observableArrayList();
+
+        while (resSet.next()) {
+            CurrentUser curr = new CurrentUser();
+            curr.setCurrUserName(resSet.getString("UserName"));
+
+
+            // add post object to postslist
+            currList.add(curr);
+        }
+        //return a PostsList which is a obervablelist of post objects
+        return currList;
+    }
+
 
 
 }
