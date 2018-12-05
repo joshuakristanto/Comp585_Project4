@@ -52,6 +52,7 @@ public class LoginPageController {
 
         stage.setResizable(false);
         stage.setScene(signUpPageScene);
+        stage.setTitle("Sign Up");
         stage.show();
     }
     
@@ -80,6 +81,7 @@ public class LoginPageController {
 
         stage.setResizable(false);
         stage.setScene(signUpPageScene);
+        stage.setTitle("User Dashboard");
         stage.show();
     }
 
