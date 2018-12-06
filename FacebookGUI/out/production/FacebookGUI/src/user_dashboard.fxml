@@ -64,8 +64,8 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <ListView fx:id="udb_FriendsListView" layoutX="25.0" layoutY="409.0" prefHeight="590.0" prefWidth="554.0" />
-      <TextField fx:id="udb_friendsUsername" layoutX="24.0" layoutY="334.0" prefHeight="59.0" prefWidth="388.0" promptText="Enter username">
+      <ListView fx:id="udb_FriendsListView" layoutX="25.0" layoutY="409.0" onMouseClicked="#visitFriend" prefHeight="590.0" prefWidth="554.0" />
+      <TextField fx:id="udb_friendsUsername" layoutX="24.0" layoutY="334.0" onKeyReleased="#checkFriendsUsername" prefHeight="59.0" prefWidth="388.0" promptText="Enter username">
          <font>
             <Font size="22.0" />
          </font>
@@ -88,8 +88,9 @@
       </Button>
       <TableView fx:id="udb_PostsTableView" layoutX="611.0" layoutY="540.0" prefHeight="459.0" prefWidth="1287.0">
         <columns>
-          <TableColumn prefWidth="162.0" text="Date" />
-          <TableColumn prefWidth="1124.0" text="Post" />
+            <TableColumn fx:id="udb_table_userName" prefWidth="138.0" text="Username" />
+          <TableColumn fx:id="udb_table_Posts" prefWidth="927.0" text="Post" />
+          <TableColumn fx:id="udb_table_Date" prefWidth="220.0" text="Date" />
         </columns>
       </TableView>
       <StackPane layoutX="611.0" layoutY="334.0" prefHeight="181.0" prefWidth="1287.0">
@@ -133,6 +134,5 @@
       </Button>
       <Line endX="1780.0" layoutX="120.0" layoutY="256.0" startX="-100.0" />
       <Line endY="535.0" layoutX="595.0" layoutY="527.0" startY="-510.0" />
-      <Label fx:id="username_key" layoutX="481.0" layoutY="213.0" text="Username" visible="true"/>
    </children>
 </Pane>

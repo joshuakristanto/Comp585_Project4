@@ -73,6 +73,7 @@ public class FriendsDao {
         try {
             DbUtil.dbExecuteUpdate(addStmt);
             DbUtil.dbExecuteUpdate(addStmt_Reverse);
+            System.out.println("Successfully added.");
 
         } catch (SQLException e) {
             System.out.print("Error occurred while DELETE Operation: " + e);

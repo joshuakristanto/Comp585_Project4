@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import util.PasswordEncryption;
@@ -24,7 +27,12 @@ import util.PasswordEncryption;
  *
  * @author Oscar
  */
-public class LoginPageController {
+public class LoginPageController implements Initializable {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
     @FXML
     private TextField login_username;
@@ -40,10 +48,14 @@ public class LoginPageController {
 
     @FXML
     private Label login_IncorrectInfo;
+
+    @FXML
+    private Button login_resetPassword;
     
     @FXML
     private void loadSignUpPage(ActionEvent event) throws IOException{
         System.out.println("Sign up button pressed");
+
         Parent signUpPageParent = FXMLLoader.load(getClass().getResource("sign_up_page.fxml"));
         Scene signUpPageScene = new Scene(signUpPageParent);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -72,26 +84,44 @@ public class LoginPageController {
         }
     }
 
+    @FXML
+    private void loadResetPasswordPage(ActionEvent event) throws IOException{
+        Parent signUpPageParent = FXMLLoader.load(getClass().getResource("reset_page.fxml"));
+        Scene signUpPageScene = new Scene(signUpPageParent);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - 720) / 2);
+        stage.setY((screenBounds.getHeight() - 720) / 2);
+
+        stage.setResizable(false);
+        stage.setScene(signUpPageScene);
+        stage.setTitle("Reset Password");
+        stage.show();
+    }
+
     private void loadUserDashBoard(ActionEvent event) throws IOException{
-        try{
-            System.out.println("You logged in!");
-            Parent loader = FXMLLoader.load(getClass().getResource("user_dashboard.fxml"));
+        System.out.println("You logged in");
+        String userName = getUsername();
 
-            Scene signUpPageScene = new Scene(loader);
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("user_dashboard.fxml"));
+        Parent parent = loader.load();
 
+        UserDashBoardController controller = loader.getController();
+        controller.init(userName);
 
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-            stage.setX((screenBounds.getWidth() - 1920) / 2);
-            stage.setY((screenBounds.getHeight() - 1080) / 2);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
-            stage.setResizable(false);
-            stage.setScene(signUpPageScene);
-            stage.setTitle(getUsername() + " Dashboard");
-            stage.show();
-        }catch (Exception e){
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - 1920) / 2);
+        stage.setY((screenBounds.getHeight() - 1080) / 2);
 
-        }
+        stage.setScene(new Scene(parent));
+        stage.setResizable(false);
+        stage.setTitle(getUsername() + " Dashboard");
+        stage.show();
+
     }
 
     private String getUsername(){
@@ -101,4 +131,5 @@ public class LoginPageController {
     private String getPassword(){
         return login_password.getText();
     }
+
 }

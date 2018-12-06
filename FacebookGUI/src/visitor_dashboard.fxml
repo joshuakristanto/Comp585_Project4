@@ -64,7 +64,7 @@
             <TableColumn prefWidth="1124.0" text="Post" />
          </columns>
       </TableView>
-      <TextArea fx:id="vdb_statusArea" editable="false" layoutX="611.0" layoutY="75.0" prefHeight="147.0" prefWidth="912.0" promptText="Click on 'Edit Status' to enter your first Status Update!">
+      <TextArea fx:id="vdb_statusArea" editable="false" layoutX="611.0" layoutY="75.0" prefHeight="147.0" prefWidth="912.0">
          <font>
             <Font size="25.0" />
          </font>
