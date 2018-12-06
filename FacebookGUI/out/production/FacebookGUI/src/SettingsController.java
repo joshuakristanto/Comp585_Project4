@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import util.PasswordEncryption;
@@ -39,10 +40,10 @@ public class SettingsController {
     private TextField settings_username;
 
     @FXML
-    private TextField settings_newPassword;
+    private PasswordField settings_newPassword;
 
     @FXML
-    private TextField settings_confirmPassword;
+    private PasswordField settings_confirmPassword;
 
     @FXML
     private Button settings_updatePassword;

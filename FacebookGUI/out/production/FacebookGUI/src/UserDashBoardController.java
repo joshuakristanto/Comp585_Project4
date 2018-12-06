@@ -38,11 +38,7 @@ public class UserDashBoardController implements Initializable {
     private String checkFriend;
 
     public void initialize(URL location, ResourceBundle resources) {
-        udb_table_userName.setCellValueFactory(new PropertyValueFactory<>("Username"));
-        udb_table_Posts.setCellValueFactory(new PropertyValueFactory<>("Posts"));
-        udb_table_Date.setCellValueFactory(new PropertyValueFactory<>("Date"));
 
-        loadPosts();
     }
 
     @FXML
@@ -175,6 +171,7 @@ public class UserDashBoardController implements Initializable {
 
             }
         }
+        udb_postTextArea.clear();
     }
 
 
@@ -252,6 +249,8 @@ public class UserDashBoardController implements Initializable {
         }catch (Exception e){
 
         }
+        udb_friendsUsername.clear();
+        udb_friendsUsername.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
     }
 
     @FXML
@@ -305,11 +304,30 @@ public class UserDashBoardController implements Initializable {
         try{
             System.out.println("Loading Posts");
             ObservableList<Posts> postList = PostsDao.searchPosts(userName);
-            for(Posts post: postList){
-                udb_PostsTableView.getItems().add(post);
+            ObservableList<Posts> reverseOrder = FXCollections.observableArrayList();
+            for(int i = postList.size(); i > 0; i-- ){
+                reverseOrder.add(postList.get(i-1));
             }
-            //udb_PostsTableView.setItems(PostsDao.searchPosts(userName));
 
+            udb_PostsTableView.setItems(reverseOrder);
+
+        }catch (Exception e){
+
+        }
+    }
+
+    @FXML
+    private void deletePost(){
+        try{
+            final int selectedIndex = udb_PostsTableView.getSelectionModel().getSelectedIndex();
+            if(selectedIndex != -1){
+                Posts itemToRemove = udb_PostsTableView.getSelectionModel().getSelectedItem();
+                final int newSelectedIndex = (selectedIndex == udb_PostsTableView.getItems().size() - 1) ? selectedIndex - 1 : selectedIndex;
+                udb_PostsTableView.getItems().remove(selectedIndex);
+                udb_PostsTableView.getSelectionModel().select(newSelectedIndex);
+
+                PostsDao.deletePosts(userName, itemToRemove.getPostText());
+            }
         }catch (Exception e){
 
         }
@@ -350,11 +368,26 @@ public class UserDashBoardController implements Initializable {
         udb_EmailLabel.setText(email);
     }
 
+    private void initTable(){
+        udb_table_userName = new TableColumn<>("Username");
+        udb_table_Posts = new TableColumn<>("Posts");
+        udb_table_Date = new TableColumn<>("Date");
+
+        udb_table_userName.setCellValueFactory(new PropertyValueFactory<>("UserName"));
+        udb_table_userName.setMinWidth(140);
+        udb_table_Posts.setCellValueFactory(new PropertyValueFactory<>("PostText"));
+        udb_table_Posts.setMinWidth(910);
+        udb_table_Date.setCellValueFactory(new PropertyValueFactory<>("PostTime"));
+        udb_table_Date.setMinWidth(235);
+
+        udb_PostsTableView.getColumns().addAll(udb_table_userName, udb_table_Posts, udb_table_Date);
+        udb_PostsTableView.setEditable(false);
+    }
+
     // Accesses DB to load information of User
     public void init(String userName){
 
         this.userName = userName;
-        udb_PostsTableView = new TableView<>();
         udb_FriendsListView.setStyle("-fx-font: 18pt 'Arial'");
         udb_PostsTableView.setStyle("-fx-font-size: 18pt");
         try{
@@ -368,6 +401,7 @@ public class UserDashBoardController implements Initializable {
             setEmail(prof.get(0).getEmail().toUpperCase());
             loadFriends();
             loadStatus();
+            initTable();
             loadPosts();
 
         } catch(Exception e) {

@@ -47,22 +47,22 @@
             <Font size="22.0" />
          </font>
       </TextField>
-      <TextField fx:id="settings_newPassword" layoutX="70.0" layoutY="526.0" prefHeight="48.0" prefWidth="460.0" promptText="New Password">
+      <PasswordField fx:id="settings_newPassword" layoutX="70.0" layoutY="526.0" prefHeight="48.0" prefWidth="460.0" promptText="New Password">
          <font>
             <Font size="22.0" />
          </font>
-      </TextField>
+      </PasswordField>
       <Button fx:id="settings_updatePassword" layoutX="201.0" layoutY="696.0" mnemonicParsing="false" onAction="#updatePassword" text="Update Password">
          <font>
             <Font size="22.0" />
          </font></Button>
       <Line endX="470.0" layoutX="115.0" layoutY="385.0" startX="-100.0" />
-      <TextField fx:id="settings_confirmPassword" layoutX="70.0" layoutY="581.0" onKeyReleased="#matchPasswords" prefHeight="48.0" prefWidth="460.0" promptText="Confirm Password">
+      <PasswordField fx:id="settings_confirmPassword" layoutX="70.0" layoutY="581.0" onKeyReleased="#matchPasswords" prefHeight="48.0" prefWidth="460.0" promptText="Confirm Password">
          <font>
             <Font size="22.0" />
          </font>
-      </TextField>
-      <Label fx:id="settings_LabelSuccess" layoutX="176.0" layoutY="647.0" text="Password successfully updated." visible="false" />
-      <Label fx:id="settings_LabelFailure" layoutX="212.0" layoutY="647.0" text="Password Reset Failed" visible="false" />
+      </PasswordField>
+      <Label fx:id="settings_LabelSuccess" layoutX="218.0" layoutY="647.0" text="Password successfully updated." visible="false" />
+      <Label fx:id="settings_LabelFailure" layoutX="254.0" layoutY="647.0" text="Password Reset Failed" visible="false" />
    </children>
 </Pane>

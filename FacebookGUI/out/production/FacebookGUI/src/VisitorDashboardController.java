@@ -1,7 +1,10 @@
 import DAO.FriendsDao;
+import DAO.PostsDao;
 import DAO.ProfilesDao;
 import Models.Friends;
+import Models.Posts;
 import Models.Profiles;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +17,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -58,6 +63,15 @@ public class VisitorDashboardController implements Initializable {
 
     @FXML
     private TableView vdb_PostsTableView;
+
+    @FXML
+    private TableColumn<Posts, String> vdb_table_userName;
+
+    @FXML
+    private TableColumn<Posts, String> vdb_table_Posts;
+
+    @FXML
+    private TableColumn<Posts, String> vdb_table_Date;
 
     @FXML
     private void loadMyDashBoard(ActionEvent event) throws IOException {
@@ -111,6 +125,38 @@ public class VisitorDashboardController implements Initializable {
         stage.show();
     }
 
+    private void loadPosts(){
+
+        try{
+            System.out.println("Loading Posts");
+            ObservableList<Posts> postList = PostsDao.searchPosts(visitorName);
+            ObservableList<Posts> reverseOrder = FXCollections.observableArrayList();
+            for(int i = postList.size(); i > 0; i-- ){
+                reverseOrder.add(postList.get(i-1));
+            }
+            vdb_PostsTableView.setItems(reverseOrder);
+
+        }catch (Exception e){
+
+        }
+    }
+
+    private void initTable(){
+        vdb_table_userName = new TableColumn<>("Username");
+        vdb_table_Posts = new TableColumn<>("Posts");
+        vdb_table_Date = new TableColumn<>("Date");
+
+        vdb_table_userName.setCellValueFactory(new PropertyValueFactory<>("UserName"));
+        vdb_table_userName.setMinWidth(140);
+        vdb_table_Posts.setCellValueFactory(new PropertyValueFactory<>("PostText"));
+        vdb_table_Posts.setMinWidth(910);
+        vdb_table_Date.setCellValueFactory(new PropertyValueFactory<>("PostTime"));
+        vdb_table_Date.setMinWidth(235);
+
+        vdb_PostsTableView.getColumns().addAll(vdb_table_userName, vdb_table_Posts, vdb_table_Date);
+        vdb_PostsTableView.setEditable(false);
+    }
+
     // Accesses DB to load information of User
     public void init(String userName){
 
@@ -128,6 +174,8 @@ public class VisitorDashboardController implements Initializable {
             setEmail(prof.get(0).getEmail().toUpperCase());
             loadFriends();
             loadStatus();
+            initTable();
+            loadPosts();
 
         } catch(Exception e) {
 
