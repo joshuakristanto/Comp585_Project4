@@ -687,7 +687,7 @@ try{
         //}
 
         try {
-            String username = "rc1138";
+            String username = "ocasarez";
             ProfilesDao.deleteCurrentUser(username);
 
         } catch(Exception e) {

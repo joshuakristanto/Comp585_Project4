@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserDashBoardController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserDashBoardController">
    <children>
 
       <Button fx:id="udb_logoutButton" layoutX="1733.0" layoutY="24.0" mnemonicParsing="false" onAction="#logoutOfApplication" prefHeight="45.0" prefWidth="164.0" text="Logout">
@@ -58,8 +64,8 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <ListView fx:id="udb_FriendsListView" layoutX="25.0" layoutY="409.0" prefHeight="590.0" prefWidth="554.0" />
-      <TextField fx:id="udb_friendsUsername" layoutX="24.0" layoutY="334.0" prefHeight="59.0" prefWidth="388.0" promptText="Enter username">
+      <ListView fx:id="udb_FriendsListView" layoutX="25.0" layoutY="409.0" onMouseClicked="#visitFriend" prefHeight="590.0" prefWidth="554.0" />
+      <TextField fx:id="udb_friendsUsername" layoutX="24.0" layoutY="334.0" onKeyReleased="#checkFriendsUsername" prefHeight="59.0" prefWidth="388.0" promptText="Enter username">
          <font>
             <Font size="22.0" />
          </font>
@@ -75,17 +81,12 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="udb_DeletePost" layoutX="1695.0" layoutY="1018.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" text="Delete Post">
+      <Button fx:id="udb_DeletePost" layoutX="1695.0" layoutY="1018.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" text="Delete Post" onAction="#deletePost">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <TableView fx:id="udb_PostsTableView" layoutX="611.0" layoutY="540.0" prefHeight="459.0" prefWidth="1287.0">
-        <columns>
-          <TableColumn prefWidth="162.0" text="Date" />
-          <TableColumn prefWidth="1124.0" text="Post" />
-        </columns>
-      </TableView>
+      <TableView fx:id="udb_PostsTableView" layoutX="611.0" layoutY="540.0" prefHeight="459.0" prefWidth="1287.0" />
       <StackPane layoutX="611.0" layoutY="334.0" prefHeight="181.0" prefWidth="1287.0">
          <children>
             <TextArea fx:id="udb_postTextArea" prefHeight="158.0" prefWidth="1016.0" promptText="Start typing and click 'New Post' to publish!" wrapText="true">

@@ -133,9 +133,9 @@ public class ProfilesDao {
 
     public static void updatePassword(String UserName, String newPassword) throws SQLException, ClassNotFoundException {
 
-        String newEncyptedPassowrd = PasswordEncryption.generatePassword(newPassword);
+        //String newEncyptedPassowrd = PasswordEncryption.generatePassword(newPassword);
         // update statement
-        String updateStmt = "UPDATE Profiles SET Password = " + "'" + newEncyptedPassowrd + "'" + " WHERE UserName = " + "'" + UserName + "'";
+        String updateStmt = "UPDATE Profiles SET Password = " + "'" + newPassword + "'" + " WHERE UserName = " + "'" + UserName + "'";
         // this will update the passsword
         try {
             DbUtil.dbExecuteUpdate(updateStmt);
@@ -215,7 +215,7 @@ public class ProfilesDao {
 
     public static ObservableList<CurrentUser> searchCurrUser() throws Exception, ClassNotFoundException {
         //this is the SELECT statement
-        String selectStmt = "SELECT * FROM CurrentUser";
+        String selectStmt = "SELECT LoggedUser FROM CurrentUser";
 
         // execute select statement
         try {
