@@ -1,4 +1,6 @@
 import DAO.SettingsDao;
+import Models.Settings;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -89,5 +91,48 @@ public class SettingsController {
         Stage stage = (Stage)settings_applySettings.getScene().getWindow();
         stage.close();
     }
+
+    public void getSettingsFromDB() throws Exception{
+
+        String friendsSelected;
+        String statusSelected;
+        String postsSelected;
+        String ageSelected;
+
+        ObservableList<Settings> userSet = SettingsDao.searchSettings(getUserName());
+
+        friendsSelected = userSet.get(0).getFriends();
+        statusSelected = userSet.get(0).getStatus();
+        postsSelected = userSet.get(0).getPosts();
+        ageSelected = userSet.get(0).getAge();
+
+
+
+        if(friendsSelected == "Y") {
+            settings_friendsListCB.setSelected(true);
+        } else {
+            settings_friendsListCB.setSelected(false);
+        }
+
+        if(statusSelected == "N") {
+            settings_emailCB.setSelected(true);
+        } else {
+            settings_emailCB.setSelected(false);
+        }
+
+        if(postsSelected == "Y") {
+            settings_postsCB.setSelected(true);
+        } else {
+            settings_postsCB.setSelected(false);
+        }
+
+        if(ageSelected == "N") {
+            settings_AgeCB.setSelected(true);
+        } else {
+            settings_AgeCB.setSelected(false);
+        }
+
+    }
+
 
 }

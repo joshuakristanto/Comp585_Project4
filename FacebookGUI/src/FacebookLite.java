@@ -2,6 +2,7 @@ import DAO.FriendsDao;
 import DAO.ProfilesDao;
 import DAO.SettingsDao;
 import Models.Friends;
+import Models.Settings;
 import javafx.collections.ObservableList;
 import util.DbUtil;
 import util.PasswordEncryption;
@@ -397,7 +398,18 @@ class FacebookLite
             e.printStackTrace();
         }
 
+        try {
+            ObservableList<Settings> userSet = SettingsDao.searchSettings("rc1138");
 
+            System.out.println(userSet.get(0).getFriends());
+            System.out.println(userSet.get(0).getPosts());
+            System.out.println(userSet.get(0).getStatus());
+            System.out.println(userSet.get(0).getAge());
+
+
+        } catch(Exception e) {
+
+        }
 
 
 
