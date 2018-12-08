@@ -8,6 +8,8 @@ import util.DbUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class SettingsDao {
 
@@ -161,5 +163,41 @@ public class SettingsDao {
             throw e;
         }
     }
+
+
+//////////// this defaults all settings to visible
+    public static void addUserToSettings(String UserName) throws SQLException, ClassNotFoundException {
+
+
+        // add the time of the posts
+        String newPostTime = new SimpleDateFormat("MM/dd/yyyy_HH:mm:ss").format(Calendar.getInstance().getTime());
+
+        String Friends = "Y";
+        String Status = "Y";
+        String Posts = "Y";
+        String Age = "Y";
+
+
+        // the addStmt
+        String addStmt = "INSERT INTO Settings(UserName, Friends, Status, Posts, Age) VALUES(" + "'" + UserName + "'" + "," + "'" + Friends + "'" + "," + "'" + Status + "'" + "," + "'" + Posts +"'" + "," + "'" + Age + "'" + ")";
+
+        // add operation
+        try {
+            DbUtil.dbExecuteUpdate(addStmt);
+
+        } catch (SQLException e) {
+            System.out.print("Error occurred while Operation: " + e);
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
 
 }

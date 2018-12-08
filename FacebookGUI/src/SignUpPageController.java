@@ -74,6 +74,8 @@ public class SignUpPageController {
 
         String encryptedPassword = PasswordEncryption.generatePassword(getPassword());
         ProfilesDao.addProfile(getFirstName(), getLastName(), getBirthday(), getUserName(), getEmail(), encryptedPassword, "", "Y");
+        // user will be added to the settings table
+        SettingsDao.addUserToSettings(getUserName());
 
         Parent signUpPageParent = FXMLLoader.load(getClass().getResource("login_page.fxml"));
         Scene signUpPageScene = new Scene(signUpPageParent);
@@ -82,6 +84,7 @@ public class SignUpPageController {
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - 720) / 2);
         stage.setY((screenBounds.getHeight() - 720) / 2);
+
 
         stage.setResizable(false);
         stage.setScene(signUpPageScene);

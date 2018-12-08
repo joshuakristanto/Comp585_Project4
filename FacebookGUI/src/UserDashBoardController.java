@@ -1,8 +1,13 @@
+
+import Models.CurrentUser;
+
+
 import DAO.FriendsDao;
 import DAO.PostsDao;
 import DAO.ProfilesDao;
 import Models.Friends;
 import Models.Posts;
+
 import Models.Profiles;
 import javafx.beans.binding.ObjectExpression;
 import javafx.collections.FXCollections;
@@ -30,9 +35,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import DAO.*;
 
 
 public class UserDashBoardController implements Initializable {
+
+
+
 
     private String userName;
     private String checkFriend;
@@ -175,6 +184,7 @@ public class UserDashBoardController implements Initializable {
     }
 
 
+
     @FXML
     private void visitFriend(MouseEvent click) throws IOException{
         if(click.getClickCount() == 2){
@@ -205,11 +215,13 @@ public class UserDashBoardController implements Initializable {
         stage.setResizable(false);
         stage.setTitle(checkFriend + " Dashboard");
         stage.show();
+
     }
 
 
     /** Add, Delete, Load, Check Friends username**/
     @FXML
+
     private void deleteFriend(){
         // Delete from GUI
         final int selectIndex = udb_FriendsListView.getSelectionModel().getSelectedIndex();
@@ -226,10 +238,12 @@ public class UserDashBoardController implements Initializable {
 
             }
         }
+
     }
 
     @FXML
     private void addFriend(ActionEvent event){
+
         try{
             if(!udb_friendsUsername.getText().equals("")){
                 //Username
@@ -351,9 +365,17 @@ public class UserDashBoardController implements Initializable {
     }
 
 
-    // Setter
-    private void setFirstNameLabel(String firstName){
+
+    //Setters
+    private void setFirstNameLabel(String firstName) {
+
         udb_firstNameLabel.setText(firstName);
+    }
+    // Setter
+    public void setUsername(String user){
+        username_key.setText(user);
+
+
     }
 
     private void setLastNameLabel(String lastName){
