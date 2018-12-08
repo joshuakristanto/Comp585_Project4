@@ -381,6 +381,26 @@ class FacebookLite
     {
         connect();
 
+        String UserName = "rc1128";
+        String Friends = "Y";
+        String Status = "Y";
+        String Posts = "Y";
+        String Age = "Y";
+
+        String addStmt = "INSERT INTO Settings(UserName, Friends. Status, Posts, Age) VALUES(" + "'" + UserName + "'" + "," + "'" + Friends + "'" + "," + "'" + Status + "'" + "," + "'" + Posts +"'" + "," + "'" + Age + "'" + ")";
+        System.out.println(addStmt);
+
+
+        try {
+            SettingsDao.updateStatusVisible("rc1139","Y");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
         try {
             DbUtil.dbExecuteQuery("SELECT * FROM Posts");
         } catch (SQLException e) {
@@ -527,6 +547,7 @@ class FacebookLite
 
 
         // updating Friend in settings
+        /*
         try {
             // FriendsDao.deleteFriend("jk2018","newGuy1");
             SettingsDao.updateFriendsVisible("rc1138","N");
@@ -536,8 +557,10 @@ class FacebookLite
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
 
        // updating status
+        /*
         try {
             // FriendsDao.deleteFriend("jk2018","newGuy1");
             SettingsDao.updateStatusVisible("rc1138","N");
@@ -547,7 +570,9 @@ class FacebookLite
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
 
+        /*
         // updating posts
         try {
             // FriendsDao.deleteFriend("jk2018","newGuy1");
@@ -558,7 +583,10 @@ class FacebookLite
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        */
 
+
+        /*
        // updating age
         try {
             // FriendsDao.deleteFriend("jk2018","newGuy1");
@@ -569,7 +597,7 @@ class FacebookLite
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+        */
 
 
         ///////// heres how encyption works NEEDS TO BE DONE WHEREEVER WE CREATE A NEW PROFILE

@@ -218,9 +218,10 @@ private String userName;
 
 
     //Setters
-    private void setFirstNameLabel(String firstName){
-        udb_firstNameLabel.setText(firstName);
+    private void setFirstNameLabel(String firstName) {
 
+        udb_firstNameLabel.setText(firstName);
+    }
     // Setter
     public void setUsername(String user){
         username_key.setText(user);
