@@ -28,6 +28,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class VisitorDashboardController implements Initializable {
@@ -265,16 +267,17 @@ public class VisitorDashboardController implements Initializable {
         vdb_PostsTableView.setStyle("-fx-font-size: 18pt");
 
         try{
-            ObservableList<Profiles> prof = ProfilesDao.searchProfiles(userName);
+            ObservableList<Profiles> prof = ProfilesDao.searchProfiles(visitorName);
 
             String firstName = prof.get(0).getFirstName().toLowerCase();
             firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
 
             System.out.println("Running");
+            System.out.println(prof.get(0).getAge());
             System.out.println(prof.get(0).getFirstName());
             setFirstNameLabel(prof.get(0).getFirstName().toUpperCase());
             setLastNameLabel(prof.get(0).getLastName().toUpperCase());
-            setAge(prof.get(0).getAge());
+            setAge(calculateAge(prof.get(0).getAge()));
             setEmail(prof.get(0).getEmail().toUpperCase());
             vdb_postsLabel.setText(firstName + "'s Posts");
             vdb_friendsListLabel.setText(firstName + "'s Friends");
@@ -284,6 +287,30 @@ public class VisitorDashboardController implements Initializable {
         } catch(Exception e) {
 
         }
+    }
+
+    private String calculateAge(String birthday){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String currentDate = formatter.format(date);
+
+        int age = 0;
+
+        int currentYear = Integer.parseInt(currentDate.substring(0,4));
+        int currentMonth = Integer.parseInt(currentDate.substring(5,7));
+        int currentDay = Integer.parseInt(currentDate.substring(8));
+
+        int year = Integer.parseInt(birthday.substring(0,4));
+        int month = Integer.parseInt(birthday.substring(5,7));
+        int day = Integer.parseInt(birthday.substring(8));
+
+        if(currentMonth <= month && currentDay < day){
+            age = currentYear - year - 1;
+        }else{
+            age = currentYear - year;
+        }
+
+        return age + "";
     }
 
     // Setter Methods

@@ -34,6 +34,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import DAO.*;
 
@@ -350,6 +352,30 @@ public class UserDashBoardController implements Initializable {
         }
     }
 
+    private String calculateAge(String birthday){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        String currentDate = formatter.format(date);
+
+        int age = 0;
+
+        int currentYear = Integer.parseInt(currentDate.substring(0,4));
+        int currentMonth = Integer.parseInt(currentDate.substring(5,7));
+        int currentDay = Integer.parseInt(currentDate.substring(8));
+
+        int year = Integer.parseInt(birthday.substring(0,4));
+        int month = Integer.parseInt(birthday.substring(5,7));
+        int day = Integer.parseInt(birthday.substring(8));
+
+        if(currentMonth <= month && currentDay < day){
+            age = currentYear - year - 1;
+        }else{
+            age = currentYear - year;
+        }
+
+        return age + "";
+    }
+
     //Getters
     private String getFirstNameLabel(){
         return udb_firstNameLabel.getText();
@@ -413,10 +439,11 @@ public class UserDashBoardController implements Initializable {
 
             ObservableList<Profiles> prof = ProfilesDao.searchProfiles(userName);
             System.out.println("Running");
+            System.out.println(prof.get(0).getAge());
             System.out.println(prof.get(0).getFirstName());
             setFirstNameLabel(prof.get(0).getFirstName().toUpperCase());
             setLastNameLabel(prof.get(0).getLastName().toUpperCase());
-            setAge(prof.get(0).getAge());
+            setAge(calculateAge(prof.get(0).getAge()));
             setEmail(prof.get(0).getEmail().toUpperCase());
             loadFriends();
             loadStatus();

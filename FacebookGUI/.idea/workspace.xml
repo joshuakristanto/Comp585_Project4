@@ -3,17 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="85029cb8-eaf8-4e2b-b30c-e1acaa6288fd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/fbLiteInfo.db" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fbLiteInfo.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/SettingsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/SettingsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SignUpPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SignUpPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserDashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserDashBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VisitorDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VisitorDashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings_page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings_page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sign_up_page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sign_up_page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user_dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/PasswordEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/PasswordEncryption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visitor_dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visitor_dashboard.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,12 +37,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="169" />
-          <entry key="java" value="3492" />
+          <entry key="java" value="3975" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3492" />
+          <entry key="JAVA" value="3975" />
           <entry key="XML" value="169" />
         </counts>
       </usages-collector>
@@ -92,7 +84,7 @@
           <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SettingsController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="169">
@@ -135,8 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserDashBoardController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-350">
-              <caret line="106" selection-start-line="106" selection-end-line="106" />
+            <state relative-caret-position="470">
+              <caret line="369" column="26" selection-start-line="369" selection-start-column="26" selection-end-line="369" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -151,11 +143,11 @@
           <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VisitorDashboardController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="280" column="61" lean-forward="true" selection-start-line="280" selection-start-column="61" selection-end-line="280" selection-end-column="61" />
+            <state relative-caret-position="619">
+              <caret line="306" column="26" selection-start-line="306" selection-start-column="26" selection-end-line="306" selection-end-column="26" />
               <folding>
                 <element signature="e#7900#7901#0" expanded="true" />
                 <element signature="e#7953#7954#0" expanded="true" />
@@ -186,11 +178,11 @@
         <option value="$PROJECT_DIR$/src/settings_page.fxml" />
         <option value="$PROJECT_DIR$/src/LoginPageController.java" />
         <option value="$PROJECT_DIR$/src/SignUpPageController.java" />
-        <option value="$PROJECT_DIR$/src/UserDashBoardController.java" />
         <option value="$PROJECT_DIR$/src/visitor_dashboard.fxml" />
-        <option value="$PROJECT_DIR$/src/VisitorDashboardController.java" />
         <option value="$PROJECT_DIR$/src/user_dashboard.fxml" />
         <option value="$PROJECT_DIR$/src/SettingsController.java" />
+        <option value="$PROJECT_DIR$/src/UserDashBoardController.java" />
+        <option value="$PROJECT_DIR$/src/VisitorDashboardController.java" />
       </list>
     </option>
   </component>
@@ -239,7 +231,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544333490029" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544336217683" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -277,12 +269,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1544323843851</updated>
-      <workItem from="1544323849084" duration="9518000" />
+      <workItem from="1544323849084" duration="12286000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9518000" />
+    <option name="totallyTimeSpent" value="12286000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -307,7 +299,7 @@
       <window_info anchor="bottom" id="Messages" weight="0.3299532" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Terminal" weight="0.3299532" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -413,25 +405,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VisitorDashboardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="280" column="61" lean-forward="true" selection-start-line="280" selection-start-column="61" selection-end-line="280" selection-end-column="61" />
-          <folding>
-            <element signature="e#7900#7901#0" expanded="true" />
-            <element signature="e#7953#7954#0" expanded="true" />
-            <element signature="e#8006#8007#0" expanded="true" />
-            <element signature="e#8057#8058#0" expanded="true" />
-            <element signature="e#8095#8096#0" expanded="true" />
-            <element signature="e#8136#8137#0" expanded="true" />
-            <element signature="e#8178#8179#0" expanded="true" />
-            <element signature="e#8223#8224#0" expanded="true" />
-            <element signature="e#8272#8273#0" expanded="true" />
-            <element signature="e#8309#8310#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/user_dashboard.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -439,13 +412,6 @@
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserDashBoardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-350">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SettingsController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -462,6 +428,32 @@
             <element signature="e#11630#11631#0" expanded="true" />
             <element signature="e#11674#11675#0" expanded="true" />
             <element signature="e#11707#11708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserDashBoardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="369" column="26" selection-start-line="369" selection-start-column="26" selection-end-line="369" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VisitorDashboardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="306" column="26" selection-start-line="306" selection-start-column="26" selection-end-line="306" selection-end-column="26" />
+          <folding>
+            <element signature="e#7900#7901#0" expanded="true" />
+            <element signature="e#7953#7954#0" expanded="true" />
+            <element signature="e#8006#8007#0" expanded="true" />
+            <element signature="e#8057#8058#0" expanded="true" />
+            <element signature="e#8095#8096#0" expanded="true" />
+            <element signature="e#8136#8137#0" expanded="true" />
+            <element signature="e#8178#8179#0" expanded="true" />
+            <element signature="e#8223#8224#0" expanded="true" />
+            <element signature="e#8272#8273#0" expanded="true" />
+            <element signature="e#8309#8310#0" expanded="true" />
           </folding>
         </state>
       </provider>
