@@ -27,7 +27,7 @@
                <font>
                   <Font size="20.0" />
                </font></TextField>
-            <TextField fx:id="sign_up_username" layoutX="265.0" layoutY="507.0" onMouseExited="#checkUsername" prefHeight="45.0" prefWidth="470.0" promptText="Username">
+            <TextField fx:id="sign_up_username" layoutX="265.0" layoutY="507.0" onKeyReleased="#checkUsername" prefHeight="45.0" prefWidth="470.0" promptText="Username">
                <font>
                   <Font size="20.0" />
                </font></TextField>

@@ -66,12 +66,13 @@ public class SignUpPageController {
     @FXML
     private Label passwordDoesntMatch;
 
+    public void init(){
+        sign_up_birthday.setStyle("-fx-font-size: 20px;");
+    }
+
     
     @FXML
     private void registerUser (ActionEvent event) throws Exception{
-        //TODO Using DAO objects pass data to DB
-        //TODO Let user know if account creation was successful
-
         String encryptedPassword = PasswordEncryption.generatePassword(getPassword());
         ProfilesDao.addProfile(getFirstName(), getLastName(), getBirthday(), getUserName(), getEmail(), encryptedPassword, "", "Y");
         // user will be added to the settings table
@@ -93,8 +94,6 @@ public class SignUpPageController {
     
     @FXML
     private void cancelRegistration (ActionEvent event) throws Exception{
-
-        //TODO Prompt user if they are sure they want to cancel registration
 
         System.out.println("Cancel button pressed");
         Parent signUpPageParent = FXMLLoader.load(getClass().getResource("login_page.fxml"));

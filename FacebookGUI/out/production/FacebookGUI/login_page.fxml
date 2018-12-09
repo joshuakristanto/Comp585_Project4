@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="login_anchor" prefHeight="720.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginPageController">
+   <children>
+      <Label fx:id="login_title" layoutX="148.0" layoutY="121.0" text="Facebook Lite" underline="true">
+         <font>
+            <Font size="70.0" />
+         </font>
+      </Label>
+      <TextField fx:id="login_username" layoutX="146.0" layoutY="338.0" prefHeight="45.0" prefWidth="430.0" promptText="username">
+         <font>
+            <Font size="22.0" />
+         </font></TextField>
+      <PasswordField fx:id="login_password" layoutX="146.0" layoutY="418.0" prefHeight="45.0" prefWidth="430.0" promptText="password">
+         <font>
+            <Font size="22.0" />
+         </font></PasswordField>
+      <Button fx:id="login_button" layoutX="186.0" layoutY="560.0" mnemonicParsing="false" onAction="#checkCredentials" prefHeight="48.0" prefWidth="150.0" text="Login">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="sign_up_button" layoutX="387.0" layoutY="560.0" mnemonicParsing="false" onAction="#loadSignUpPage" prefHeight="48.0" prefWidth="150.0" text="Sign Up">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Label fx:id="login_IncorrectInfo" layoutX="278.0" layoutY="496.0" text="Account information is incorrect." textAlignment="CENTER" textFill="RED" visible="false" />
+      <Button fx:id="login_resetPassword" layoutX="313.0" layoutY="646.0" mnemonicParsing="false" onAction="#loadResetPasswordPage" text="Reset Password" />
+   </children>
+</AnchorPane>

@@ -53,13 +53,13 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="611.0" layoutY="24.0" text="Status">
+      <Label layoutX="611.0" layoutY="24.0" text="My Status">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
 
-      <Label layoutX="25.0" layoutY="285.0" text="Friends List">
+      <Label layoutX="25.0" layoutY="285.0" text="My Friends">
          <font>
             <Font size="25.0" />
          </font>

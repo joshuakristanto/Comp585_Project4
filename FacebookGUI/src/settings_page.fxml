@@ -6,26 +6,26 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="764.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SettingsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1150.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SettingsController">
    <children>
-      <CheckBox fx:id="settings_AgeCB" layoutX="267.0" layoutY="104.0" mnemonicParsing="false" text="Age">
+      <CheckBox fx:id="settings_AgeCB" layoutX="267.0" layoutY="104.0" mnemonicParsing="false" text="Age" selected="false">
          <font>
             <Font size="22.0" />
          </font></CheckBox>
-      <Label layoutX="18.0" layoutY="35.0" text="Privacy Settings">
+      <Label layoutX="10.0" layoutY="14.0" text="Privacy Settings">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <CheckBox fx:id="settings_statusCD" layoutX="267.0" layoutY="277.0" mnemonicParsing="false" text="Status">
+      <CheckBox fx:id="settings_statusCD" layoutX="267.0" layoutY="277.0" mnemonicParsing="false" text="Status" selected="false">
          <font>
             <Font size="22.0" />
          </font></CheckBox>
-      <CheckBox fx:id="settings_friendsListCB" layoutX="267.0" layoutY="162.0" mnemonicParsing="false" text="Friends List">
+      <CheckBox fx:id="settings_friendsListCB" layoutX="267.0" layoutY="162.0" mnemonicParsing="false" text="Friends List" selected="false">
          <font>
             <Font size="22.0" />
          </font></CheckBox>
-      <CheckBox fx:id="settings_postsCB" layoutX="268.0" layoutY="223.0" mnemonicParsing="false" text="Posts">
+      <CheckBox fx:id="settings_postsCB" layoutX="268.0" layoutY="223.0" mnemonicParsing="false" text="Posts" selected="false">
          <font>
             <Font size="22.0" />
          </font></CheckBox>
@@ -37,9 +37,9 @@
          <font>
             <Font size="22.0" />
          </font></Button>
-      <Label layoutX="18.0" layoutY="401.0" text="Reset Password">
+      <Label layoutX="11.0" layoutY="386.0" text="Reset Password">
          <font>
-            <Font size="28.0" />
+            <Font size="36.0" />
          </font>
       </Label>
       <TextField fx:id="settings_username" layoutX="70.0" layoutY="449.0" prefHeight="48.0" prefWidth="460.0" promptText="Username">
@@ -64,5 +64,27 @@
       </PasswordField>
       <Label fx:id="settings_LabelSuccess" layoutX="218.0" layoutY="647.0" text="Password successfully updated." visible="false" />
       <Label fx:id="settings_LabelFailure" layoutX="254.0" layoutY="647.0" text="Password Reset Failed" visible="false" />
+      <Line endX="470.0" layoutX="115.0" layoutY="762.0" startX="-100.0" />
+      <Label layoutX="10.0" layoutY="763.0" text="Delete Profile">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="settings_usernameToDelete" layoutX="70.0" layoutY="829.0" prefHeight="48.0" prefWidth="460.0" promptText="Username" onKeyReleased="#checkUsername">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <Label layoutX="70.0" layoutY="904.0" prefHeight="90.0" prefWidth="460.0" text="Enter 'CONFIRM' in order to validate that you wish to delete your profile. Once deleted there is no way of retrieving your profile." textAlignment="CENTER" textFill="RED" wrapText="true" />
+      <TextField fx:id="settings_confirmDelete" layoutX="70.0" layoutY="994.0" prefHeight="48.0" prefWidth="460.0" promptText="CONFIRM" onKeyReleased="#checkConfirmField">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </TextField>
+      <Button fx:id="settings_deleteProfileButton" layoutX="220.0" layoutY="1080.0" mnemonicParsing="false" onAction="#deleteProfile" text="Delete Profile">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

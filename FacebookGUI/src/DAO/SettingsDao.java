@@ -168,10 +168,6 @@ public class SettingsDao {
 //////////// this defaults all settings to visible
     public static void addUserToSettings(String UserName) throws SQLException, ClassNotFoundException {
 
-
-        // add the time of the posts
-        String newPostTime = new SimpleDateFormat("MM/dd/yyyy_HH:mm:ss").format(Calendar.getInstance().getTime());
-
         String Friends = "Y";
         String Status = "Y";
         String Posts = "Y";
@@ -193,7 +189,23 @@ public class SettingsDao {
         }
     }
 
+    // Delete User from Settings
+    public static void deleteUserFromSettings(String UserName) throws SQLException, ClassNotFoundException {
 
+        // deleteStmt
+        String deleteStmt = "DELETE FROM Settings WHERE UserName =" + "'" + UserName + "'";
+
+        try{
+            DbUtil.dbExecuteUpdate(deleteStmt);
+        } catch (SQLException e){
+            System.out.print("Error occurred during DELETE Operation: " + e);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+    }
 
 
 

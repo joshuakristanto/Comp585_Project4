@@ -105,8 +105,10 @@ public class UserDashBoardController implements Initializable {
     private Button udb_addFriend;
 
 
+
+
     @FXML
-    private void logoutOfApplication(ActionEvent event) throws IOException {
+    public void logoutOfApplication(ActionEvent event) throws IOException {
         System.out.println("You have logged out.");
         Parent signUpPageParent = FXMLLoader.load(getClass().getResource("login_page.fxml"));
         Scene signUpPageScene = new Scene(signUpPageParent);
@@ -131,12 +133,13 @@ public class UserDashBoardController implements Initializable {
 
         SettingsController controller = loader.getController();
         controller.init(userName);
+        controller.setMainStage((Stage) ((Node)event.getSource()).getScene().getWindow());
 
         Stage stage = new Stage();
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - 600) / 2);
-        stage.setY((screenBounds.getHeight() - 400) / 2);
+        stage.setY((screenBounds.getHeight() - 1150) / 2);
 
         stage.setScene(new Scene(parent));
         stage.setResizable(false);
@@ -213,7 +216,7 @@ public class UserDashBoardController implements Initializable {
 
         stage.setScene(new Scene(parent));
         stage.setResizable(false);
-        stage.setTitle(checkFriend + " Dashboard");
+        stage.setTitle(checkFriend + "'s Dashboard");
         stage.show();
 
     }
@@ -370,12 +373,6 @@ public class UserDashBoardController implements Initializable {
     private void setFirstNameLabel(String firstName) {
 
         udb_firstNameLabel.setText(firstName);
-    }
-    // Setter
-    public void setUsername(String user){
-        username_key.setText(user);
-
-
     }
 
     private void setLastNameLabel(String lastName){

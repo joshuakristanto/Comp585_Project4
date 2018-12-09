@@ -1,9 +1,11 @@
 import DAO.FriendsDao;
 import DAO.PostsDao;
 import DAO.ProfilesDao;
+import DAO.SettingsDao;
 import Models.Friends;
 import Models.Posts;
 import Models.Profiles;
+import Models.Settings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -74,6 +76,22 @@ public class VisitorDashboardController implements Initializable {
     private TableColumn<Posts, String> vdb_table_Date;
 
     @FXML
+    private Label vdb_postsLabel;
+
+    @FXML
+    private Label vdb_friendsListLabel;
+
+    @FXML
+    private Label vdb_statusLabel;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    // Page Loaders
+
+    @FXML
     private void loadMyDashBoard(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("user_dashboard.fxml"));
@@ -110,21 +128,34 @@ public class VisitorDashboardController implements Initializable {
         stage.show();
     }
 
+
+
     @FXML
-    private void openSettings() throws IOException{
-        Parent signUpPageParent = FXMLLoader.load(getClass().getResource("settings_page.fxml"));
-        Scene signUpPageScene = new Scene(signUpPageParent);
+    private void openSettings(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("settings_page.fxml"));
+        Parent parent = loader.load();
+
+        SettingsController controller = loader.getController();
+        controller.init(myUserName);
+        controller.setMainStage((Stage) ((Node)event.getSource()).getScene().getWindow());
+
         Stage stage = new Stage();
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - 600) / 2);
-        stage.setY((screenBounds.getHeight() - 400) / 2);
+        stage.setY((screenBounds.getHeight() - 1150) / 2);
 
+        stage.setScene(new Scene(parent));
         stage.setResizable(false);
-        stage.setScene(signUpPageScene);
+        stage.setTitle("Settings");
         stage.show();
     }
 
+    // End of Page Loaders
+
+
+    // Data Loaders
     private void loadPosts(){
 
         try{
@@ -139,67 +170,6 @@ public class VisitorDashboardController implements Initializable {
         }catch (Exception e){
 
         }
-    }
-
-    private void initTable(){
-        vdb_table_userName = new TableColumn<>("Username");
-        vdb_table_Posts = new TableColumn<>("Posts");
-        vdb_table_Date = new TableColumn<>("Date");
-
-        vdb_table_userName.setCellValueFactory(new PropertyValueFactory<>("UserName"));
-        vdb_table_userName.setMinWidth(140);
-        vdb_table_Posts.setCellValueFactory(new PropertyValueFactory<>("PostText"));
-        vdb_table_Posts.setMinWidth(910);
-        vdb_table_Date.setCellValueFactory(new PropertyValueFactory<>("PostTime"));
-        vdb_table_Date.setMinWidth(235);
-
-        vdb_PostsTableView.getColumns().addAll(vdb_table_userName, vdb_table_Posts, vdb_table_Date);
-        vdb_PostsTableView.setEditable(false);
-    }
-
-    // Accesses DB to load information of User
-    public void init(String userName){
-
-        this.visitorName = userName;
-        vdb_FriendsListView.setStyle("-fx-font: 18pt 'Arial'");
-        vdb_PostsTableView.setStyle("-fx-font-size: 18pt");
-        try{
-
-            ObservableList<Profiles> prof = ProfilesDao.searchProfiles(userName);
-            System.out.println("Running");
-            System.out.println(prof.get(0).getFirstName());
-            setFirstNameLabel(prof.get(0).getFirstName().toUpperCase());
-            setLastNameLabel(prof.get(0).getLastName().toUpperCase());
-            setAge(prof.get(0).getAge());
-            setEmail(prof.get(0).getEmail().toUpperCase());
-            loadFriends();
-            loadStatus();
-            initTable();
-            loadPosts();
-
-        } catch(Exception e) {
-
-        }
-    }
-
-    private void setFirstNameLabel(String firstName){
-        vdb_firstNameLabel.setText(firstName);
-    }
-
-    private void setLastNameLabel(String lastName){
-        vdb_lastNameLabel.setText(lastName);
-    }
-
-    private void setAge(String age){
-        vdb_AgeLabel.setText(age);
-    }
-
-    private void setEmail(String email){
-        vdb_EmailLabel.setText(email);
-    }
-
-    public void setMyUserName(String userName){
-        myUserName = userName;
     }
 
     private void loadFriends(){
@@ -228,8 +198,114 @@ public class VisitorDashboardController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    private void loadSettings(){
+        try{
+            ObservableList<Settings> settingsList = SettingsDao.searchSettings(visitorName);
+            // Visitor Settings
+            // Age
+            String ageSetting = settingsList.get(0).getAge();
+            if(ageSetting.equals("Y")){
+                vdb_AgeLabel.setVisible(true);
+            }else{
+                vdb_AgeLabel.setVisible(false);
+            }
+            // Friends List
+            String friendsListSetting = settingsList.get(0).getFriends();
+            if(friendsListSetting.equals("Y")){
+                vdb_FriendsListView.setVisible(true);
+                loadFriends();
+            }else{
+                vdb_FriendsListView.setVisible(false);
+            }
+            // Posts
+            String postsSetting = settingsList.get(0).getPosts();
+            if(postsSetting.equals("Y")){
+                vdb_PostsTableView.setVisible(true);
+                initTable();
+                loadPosts();
+            }else{
+                vdb_PostsTableView.setVisible(false);
+            }
+            // Status
+            String statusSetting = settingsList.get(0).getStatus();
+            if(statusSetting.equals("Y")){
+                vdb_statusArea.setVisible(true);
+                loadStatus();
+            }else{
+                vdb_statusArea.setVisible(false);
+            }
+        }catch (Exception e){
 
+        }
     }
+
+    // End of Data Loaders
+
+    private void initTable(){
+        vdb_table_userName = new TableColumn<>("Username");
+        vdb_table_Posts = new TableColumn<>("Posts");
+        vdb_table_Date = new TableColumn<>("Date");
+
+        vdb_table_userName.setCellValueFactory(new PropertyValueFactory<>("UserName"));
+        vdb_table_userName.setMinWidth(140);
+        vdb_table_Posts.setCellValueFactory(new PropertyValueFactory<>("PostText"));
+        vdb_table_Posts.setMinWidth(910);
+        vdb_table_Date.setCellValueFactory(new PropertyValueFactory<>("PostTime"));
+        vdb_table_Date.setMinWidth(235);
+
+        vdb_PostsTableView.getColumns().addAll(vdb_table_userName, vdb_table_Posts, vdb_table_Date);
+        vdb_PostsTableView.setEditable(false);
+    }
+
+    // Accesses DB to load information of User
+    public void init(String userName){
+
+        this.visitorName = userName;
+        vdb_FriendsListView.setStyle("-fx-font: 18pt 'Arial'");
+        vdb_PostsTableView.setStyle("-fx-font-size: 18pt");
+
+        try{
+            ObservableList<Profiles> prof = ProfilesDao.searchProfiles(userName);
+
+            String firstName = prof.get(0).getFirstName().toLowerCase();
+            firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
+
+            System.out.println("Running");
+            System.out.println(prof.get(0).getFirstName());
+            setFirstNameLabel(prof.get(0).getFirstName().toUpperCase());
+            setLastNameLabel(prof.get(0).getLastName().toUpperCase());
+            setAge(prof.get(0).getAge());
+            setEmail(prof.get(0).getEmail().toUpperCase());
+            vdb_postsLabel.setText(firstName + "'s Posts");
+            vdb_friendsListLabel.setText(firstName + "'s Friends");
+            vdb_statusLabel.setText(firstName + "'s Status");
+            loadSettings();
+
+        } catch(Exception e) {
+
+        }
+    }
+
+    // Setter Methods
+
+    private void setFirstNameLabel(String firstName){
+        vdb_firstNameLabel.setText(firstName);
+    }
+
+    private void setLastNameLabel(String lastName){
+        vdb_lastNameLabel.setText(lastName);
+    }
+
+    private void setAge(String age){
+        vdb_AgeLabel.setText(age);
+    }
+
+    private void setEmail(String email){
+        vdb_EmailLabel.setText(email);
+    }
+
+    public void setMyUserName(String userName){
+        myUserName = userName;
+    }
+
 }

@@ -41,18 +41,18 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="611.0" layoutY="24.0" text="Status">
+      <Label fx:id="vdb_statusLabel" layoutX="611.0" layoutY="24.0" text="Status">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="285.0" text="Friends List">
+      <Label fx:id="vdb_friendsListLabel" layoutX="25.0" layoutY="285.0" text="Friends List">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
       <ListView fx:id="vdb_FriendsListView" layoutX="25.0" layoutY="335.0" prefHeight="716.0" prefWidth="554.0" />
-      <Label layoutX="617.0" layoutY="285.0" text="My Posts">
+      <Label fx:id="vdb_postsLabel" layoutX="617.0" layoutY="285.0" text="My Posts">
          <font>
             <Font size="25.0" />
          </font>

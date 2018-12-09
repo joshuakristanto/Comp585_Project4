@@ -56,9 +56,15 @@ public class LoginPageController implements Initializable {
     private void loadSignUpPage(ActionEvent event) throws IOException{
         System.out.println("Sign up button pressed");
 
-        Parent signUpPageParent = FXMLLoader.load(getClass().getResource("sign_up_page.fxml"));
-        Scene signUpPageScene = new Scene(signUpPageParent);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("sign_up_page.fxml"));
+        Parent parent = loader.load();
+        Scene signUpPageScene = new Scene(parent);
+
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        SignUpPageController controller = loader.getController();
+        controller.init();
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - 1000) / 2);
@@ -73,7 +79,6 @@ public class LoginPageController implements Initializable {
     @FXML
     private void checkCredentials(ActionEvent event) throws IOException{
         System.out.println("Login button pressed");
-        // TODO Check password, call encryption method here
         Boolean checker = PasswordEncryption.checkPassword(getUsername(), getPassword());
         if(checker){
             //If password correct log in
@@ -119,7 +124,7 @@ public class LoginPageController implements Initializable {
 
         stage.setScene(new Scene(parent));
         stage.setResizable(false);
-        stage.setTitle(getUsername() + " Dashboard");
+        stage.setTitle(getUsername() + "'s Dashboard");
         stage.show();
 
     }

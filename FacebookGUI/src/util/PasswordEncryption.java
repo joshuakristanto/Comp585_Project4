@@ -134,7 +134,7 @@ public class PasswordEncryption {
             prof = ProfilesDao.searchProfiles(UserName);
             System.out.println("prof in try is " + prof.get(0).getPassword());
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
 
