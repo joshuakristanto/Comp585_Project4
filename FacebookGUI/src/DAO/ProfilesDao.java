@@ -162,6 +162,56 @@ public class ProfilesDao {
         }
     }
 
+    // Update FirstName
+    public static void updateFirstName(String UserName, String newFirstName) throws SQLException, ClassNotFoundException{
+        // Update UserName
+        String updateStmt = "UPDATE Profiles SET FIrstName = " + "'" + newFirstName + "'"  + "WHERE UserName = " + "'" + UserName + "'";
+
+        try{
+            DbUtil.dbExecuteUpdate(updateStmt);
+        }catch (SQLException e){
+
+        }
+    }
+
+    //Update LastName
+    public static void updateLastName(String UserName, String newLastName) throws SQLException, ClassNotFoundException{
+        // Update last Name
+        String updateStmt = "UPDATE Profiles SET LastName = " + "'" + newLastName + "'"  + "WHERE UserName = " + "'" + UserName + "'";
+
+        try{
+            DbUtil.dbExecuteUpdate(updateStmt);
+        }catch (SQLException e){
+
+        }
+    }
+
+    // Update userName
+    public static void updateUserName(String UserName, String newUserName) throws SQLException, ClassNotFoundException{
+
+        //Update stmt
+        String updateStmt = "UPDATE Profiles SET UserName = " + "'" + newUserName + "'"  + "WHERE UserName = " + "'" + UserName + "'";
+
+        try{
+            DbUtil.dbExecuteUpdate(updateStmt);
+        }catch (SQLException e){
+            System.out.println("Error occurred while updating username to " + newUserName );
+        }
+
+    }
+
+    public static void updateEmail(String UserName, String newEmail) throws SQLException, ClassNotFoundException{
+
+        // Update Stmt
+        String updateStmt = "UPDATE Profiles SET Email = " + "'" + newEmail + "'"  + "WHERE UserName = " + "'" + UserName + "'";
+
+        try{
+            DbUtil.dbExecuteUpdate(updateStmt);
+        }catch (SQLException e){
+
+        }
+    }
+
     /////////// update status
     public static void updateStatus(String UserName, String newStatus) throws SQLException, ClassNotFoundException {
 

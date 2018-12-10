@@ -102,5 +102,20 @@ public class FriendsDao {
         }
     }
 
+    // Update userName
+    public static void updateUserName(String UserName, String newUserName) throws SQLException, ClassNotFoundException{
+
+        //Update stmt
+        String updateStmt = "UPDATE Friends SET UserName = " + "'" + newUserName + "'"  + "WHERE UserName = " + "'" + UserName + "'";
+        String updateStmt2 = "UPDATE Friends SET FriendUserName = " + "'" + newUserName + "'"  + "WHERE FriendUserName = " + "'" + UserName + "'";
+        try{
+            DbUtil.dbExecuteUpdate(updateStmt);
+            DbUtil.dbExecuteUpdate(updateStmt2);
+        }catch (SQLException e){
+            System.out.println("Error occurred while updating username to " + newUserName );
+        }
+
+    }
+
 
 }

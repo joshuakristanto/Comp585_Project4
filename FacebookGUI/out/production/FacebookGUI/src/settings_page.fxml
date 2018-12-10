@@ -6,48 +6,48 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1150.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SettingsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1150.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SettingsController">
    <children>
-      <CheckBox fx:id="settings_AgeCB" layoutX="267.0" layoutY="104.0" mnemonicParsing="false" text="Age" selected="false">
+      <CheckBox fx:id="settings_AgeCB" layoutX="541.0" layoutY="108.0" mnemonicParsing="false" selected="false" text="Age">
          <font>
-            <Font size="22.0" />
+            <Font size="25.0" />
          </font></CheckBox>
-      <Label layoutX="10.0" layoutY="14.0" text="Privacy Settings">
+      <Label layoutX="462.0" layoutY="31.0" text="Privacy Settings">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <CheckBox fx:id="settings_statusCD" layoutX="267.0" layoutY="277.0" mnemonicParsing="false" text="Status" selected="false">
+      <CheckBox fx:id="settings_statusCD" layoutX="541.0" layoutY="277.0" mnemonicParsing="false" selected="false" text="Status">
          <font>
-            <Font size="22.0" />
+            <Font size="25.0" />
          </font></CheckBox>
-      <CheckBox fx:id="settings_friendsListCB" layoutX="267.0" layoutY="162.0" mnemonicParsing="false" text="Friends List" selected="false">
+      <CheckBox fx:id="settings_friendsListCB" layoutX="541.0" layoutY="164.0" mnemonicParsing="false" selected="false" text="Friends List">
          <font>
-            <Font size="22.0" />
+            <Font size="25.0" />
          </font></CheckBox>
-      <CheckBox fx:id="settings_postsCB" layoutX="268.0" layoutY="223.0" mnemonicParsing="false" text="Posts" selected="false">
+      <CheckBox fx:id="settings_postsCB" layoutX="541.0" layoutY="220.0" mnemonicParsing="false" selected="false" text="Posts">
          <font>
-            <Font size="22.0" />
+            <Font size="25.0" />
          </font></CheckBox>
-      <Button fx:id="settings_defaultSettings" layoutX="134.0" layoutY="321.0" mnemonicParsing="false" onAction="#applyDefaultSettings" text="Default">
+      <Button fx:id="settings_defaultSettings" layoutX="404.0" layoutY="321.0" mnemonicParsing="false" onAction="#applyDefaultSettings" text="Default">
          <font>
             <Font size="22.0" />
          </font></Button>
-      <Button fx:id="settings_applySettings" layoutX="389.0" layoutY="321.0" mnemonicParsing="false" onAction="#applyUserSettings" text="Apply">
+      <Button fx:id="settings_applySettings" layoutX="709.0" layoutY="321.0" mnemonicParsing="false" onAction="#applyUserSettings" text="Apply">
          <font>
             <Font size="22.0" />
          </font></Button>
-      <Label layoutX="11.0" layoutY="386.0" text="Reset Password">
+      <Label layoutX="166.0" layoutY="402.0" text="Change Password">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="settings_username" layoutX="70.0" layoutY="449.0" prefHeight="48.0" prefWidth="460.0" promptText="Username">
+      <TextField fx:id="settings_username" layoutX="70.0" layoutY="470.0" prefHeight="48.0" prefWidth="460.0" promptText="Username" onKeyReleased="#checkNewUsername">
          <font>
             <Font size="22.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="settings_newPassword" layoutX="70.0" layoutY="526.0" prefHeight="48.0" prefWidth="460.0" promptText="New Password">
+      <PasswordField fx:id="settings_newPassword" layoutX="70.0" layoutY="573.0" prefHeight="48.0" prefWidth="460.0" promptText="New Password">
          <font>
             <Font size="22.0" />
          </font>
@@ -56,8 +56,8 @@
          <font>
             <Font size="22.0" />
          </font></Button>
-      <Line endX="470.0" layoutX="115.0" layoutY="385.0" startX="-100.0" />
-      <PasswordField fx:id="settings_confirmPassword" layoutX="70.0" layoutY="581.0" onKeyReleased="#matchPasswords" prefHeight="48.0" prefWidth="460.0" promptText="Confirm Password">
+      <Line endX="1020.0" layoutX="115.0" layoutY="385.0" startX="-100.0" />
+      <PasswordField fx:id="settings_confirmPassword" layoutX="70.0" layoutY="626.0" onKeyReleased="#matchPasswords" prefHeight="48.0" prefWidth="460.0" promptText="Confirm Password">
          <font>
             <Font size="22.0" />
          </font>
@@ -65,23 +65,55 @@
       <Label fx:id="settings_LabelSuccess" layoutX="218.0" layoutY="647.0" text="Password successfully updated." visible="false" />
       <Label fx:id="settings_LabelFailure" layoutX="254.0" layoutY="647.0" text="Password Reset Failed" visible="false" />
       <Line endX="470.0" layoutX="115.0" layoutY="762.0" startX="-100.0" />
-      <Label layoutX="10.0" layoutY="763.0" text="Delete Profile">
+      <Label layoutX="200.0" layoutY="769.0" text="Delete Profile">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="settings_usernameToDelete" layoutX="70.0" layoutY="829.0" prefHeight="48.0" prefWidth="460.0" promptText="Username" onKeyReleased="#checkUsername">
+      <TextField fx:id="settings_usernameToDelete" layoutX="70.0" layoutY="829.0" onKeyReleased="#checkUsername" prefHeight="48.0" prefWidth="460.0" promptText="Username">
          <font>
             <Font size="22.0" />
          </font>
       </TextField>
       <Label layoutX="70.0" layoutY="904.0" prefHeight="90.0" prefWidth="460.0" text="Enter 'CONFIRM' in order to validate that you wish to delete your profile. Once deleted there is no way of retrieving your profile." textAlignment="CENTER" textFill="RED" wrapText="true" />
-      <TextField fx:id="settings_confirmDelete" layoutX="70.0" layoutY="994.0" prefHeight="48.0" prefWidth="460.0" promptText="CONFIRM" onKeyReleased="#checkConfirmField">
+      <TextField fx:id="settings_confirmDelete" layoutX="70.0" layoutY="994.0" onKeyReleased="#checkConfirmField" prefHeight="48.0" prefWidth="460.0" promptText="CONFIRM">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </TextField>
       <Button fx:id="settings_deleteProfileButton" layoutX="220.0" layoutY="1080.0" mnemonicParsing="false" onAction="#deleteProfile" text="Delete Profile">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Line endY="1115.0" layoutX="586.0" layoutY="15.0" startY="370.0" />
+      <Label layoutX="761.0" layoutY="402.0" text="Update Profile">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="settings_FirstName" layoutX="645.0" layoutY="573.0" prefHeight="39.0" prefWidth="460.0" promptText="First Name">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="settings_LastName" layoutX="645.0" layoutY="626.0" prefHeight="39.0" prefWidth="460.0" promptText="Last Name">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="settings_updateUserName" layoutX="645.0" layoutY="470.0" prefHeight="39.0" prefWidth="460.0" promptText="Username">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <DatePicker fx:id="settings_birthday" editable="false" layoutX="645.0" layoutY="829.0" prefHeight="48.0" prefWidth="460.0" promptText="Birthday" />
+      <TextField fx:id="settings_updateEmail" layoutX="645.0" layoutY="994.0" prefHeight="39.0" prefWidth="460.0" promptText="example@domain.com">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <Button fx:id="settings_UpdateProfile" layoutX="790.0" layoutY="1080.0" mnemonicParsing="false" onAction="#updateProfile" text="Update Profile">
          <font>
             <Font size="22.0" />
          </font>

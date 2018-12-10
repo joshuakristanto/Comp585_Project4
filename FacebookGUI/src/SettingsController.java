@@ -4,30 +4,30 @@ import DAO.ProfilesDao;
 import DAO.SettingsDao;
 import Models.Friends;
 import Models.Posts;
+import Models.Profiles;
 import Models.Settings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import util.PasswordEncryption;
 
-import javax.xml.soap.Text;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
 
 public class SettingsController implements Initializable {
 
@@ -80,6 +80,24 @@ public class SettingsController implements Initializable {
     @FXML
     private Button settings_deleteProfileButton;
 
+    @FXML
+    private TextField settings_FirstName;
+
+    @FXML
+    private TextField settings_LastName;
+
+    @FXML
+    private TextField settings_updateUserName;
+
+    @FXML
+    private DatePicker settings_birthday;
+
+    @FXML
+    private TextField settings_updateEmail;
+
+    @FXML
+    private Button settings_UpdateProfile;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -87,7 +105,9 @@ public class SettingsController implements Initializable {
 
     public void init(String userName){
         myUserName = userName;
+        settings_birthday.setStyle("-fx-font-size: 20px");
         loadSettings();
+        loadProfile();
     }
 
     private void loadSettings(){
@@ -128,6 +148,88 @@ public class SettingsController implements Initializable {
         }catch (Exception e){
 
         }
+    }
+
+    // Update Profile
+    @FXML
+    private void updateProfile() throws IOException{
+        if(settings_updateUserName.getText().length() > 5){
+            try{
+                ObservableList<Profiles> profiles = ProfilesDao.searchProfiles(myUserName);
+                //First Name
+                if(!profiles.get(0).getFirstName().equals(settings_FirstName.getText())){
+                    ProfilesDao.updateFirstName(myUserName, settings_FirstName.getText());
+                }
+                //Last Name
+                if(!profiles.get(0).getLastName().equals(settings_LastName.getText())){
+                    ProfilesDao.updateLastName(myUserName, settings_LastName.getText());
+                }
+                //Email
+                if(!profiles.get(0).getEmail().equals(settings_updateEmail.getText())){
+                    ProfilesDao.updateEmail(myUserName, settings_updateEmail.getText());
+                }
+                //Username
+                if(!profiles.get(0).getUserName().equals(settings_updateUserName.getText())){
+                    ProfilesDao.updateUserName(myUserName, settings_updateUserName.getText());
+                    FriendsDao.updateUserName(myUserName, settings_updateUserName.getText());
+                    PostsDao.updateUserName(myUserName, settings_updateUserName.getText());
+                    SettingsDao.updateUserName(myUserName, settings_updateUserName.getText());
+                }
+            }catch (Exception e){
+
+            }
+        }
+        // Closes Settings Page
+        Stage stage = (Stage)settings_deleteProfileButton.getScene().getWindow();
+        stage.close();
+        // Closes Main Page and opens login screen
+        closeMainStage();
+    }
+
+    @FXML
+    private void checkNewUsername(){
+        if(settings_updateUserName.getText().length() < 5){
+            settings_updateUserName.setTooltip(new Tooltip("Username must be at least 6 characters."));
+        }else{
+            try{
+                // Checks if username is in the DB
+                ObservableList<Profiles> prof = ProfilesDao.searchProfiles(myUserName);
+
+                if(prof.size() > 0 && !settings_updateUserName.getText().equals(myUserName)){ // Username is taken
+                    settings_updateUserName.setStyle("-fx-border-color: red; -fx-text-inner-color: red;");
+                }else if(settings_updateUserName.getText().equals("") || settings_updateUserName.getText().equals(myUserName)){
+                    settings_updateUserName.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
+                }else{
+                    settings_updateUserName.setStyle("-fx-border-color: #00FF3C; -fx-text-inner-color: #00FF3C;");
+                }
+            } catch (Exception e){
+
+            }
+        }
+    }
+
+    private void loadProfile(){
+        String fName = "";
+        String lName = "";
+        String email = "";
+        String birthday = "";
+        try{
+            ObservableList<Profiles> profiles = ProfilesDao.searchProfiles(myUserName);
+            fName = profiles.get(0).getFirstName();
+            lName = profiles.get(0).getLastName();
+            email = profiles.get(0).getEmail();
+            birthday = profiles.get(0).getAge();
+        }catch (Exception e){
+
+        }
+
+        LocalDate date = LocalDate.parse(birthday);
+
+        settings_birthday.setValue(date);
+        settings_FirstName.setText(fName);
+        settings_LastName.setText(lName);
+        settings_updateEmail.setText(email);
+        settings_updateUserName.setText(myUserName);
     }
 
     // Delete Profile

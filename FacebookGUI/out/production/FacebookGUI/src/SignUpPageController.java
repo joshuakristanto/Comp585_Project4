@@ -18,6 +18,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import DAO.*;
@@ -131,23 +132,30 @@ public class SignUpPageController {
 
     @FXML
     private void checkUsername() {
-        try{
-            // Checks if username is in the DB
-            ObservableList<Profiles> prof = ProfilesDao.searchProfiles(getUserName());
+        if(sign_up_username.getText().length() < 5){
+            Tooltip tooltip = new Tooltip("Username must be at least 6 characters.");
+            tooltip.activatedProperty();
+            sign_up_username.setTooltip(tooltip);
+            sign_up_username.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
+        }else{
+            try{
+                // Checks if username is in the DB
+                ObservableList<Profiles> prof = ProfilesDao.searchProfiles(getUserName());
 
-            if(prof.size() > 0){ // Username is taken
-                sign_up_username.setStyle("-fx-border-color: red; -fx-text-inner-color: red;");
-                username_avail.setVisible(true);
+                if(prof.size() > 0){ // Username is taken
+                    sign_up_username.setStyle("-fx-border-color: red; -fx-text-inner-color: red;");
+                    username_avail.setVisible(true);
 
-            }else if(sign_up_username.getText().equals("")){
-                sign_up_username.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
-                username_avail.setVisible(false);
-            }else{
-                sign_up_username.setStyle("-fx-border-color: #00FF3C; -fx-text-inner-color: #00FF3C;");
-                username_avail.setVisible(false);
+                }else if(sign_up_username.getText().equals("")){
+                    sign_up_username.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
+                    username_avail.setVisible(false);
+                }else{
+                    sign_up_username.setStyle("-fx-border-color: #00FF3C; -fx-text-inner-color: #00FF3C;");
+                    username_avail.setVisible(false);
+                }
+            } catch (Exception e){
+
             }
-        } catch (Exception e){
-
         }
     }
 

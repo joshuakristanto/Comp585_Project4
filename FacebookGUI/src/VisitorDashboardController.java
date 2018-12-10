@@ -145,7 +145,7 @@ public class VisitorDashboardController implements Initializable {
         Stage stage = new Stage();
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX((screenBounds.getWidth() - 600) / 2);
+        stage.setX((screenBounds.getWidth() - 1150) / 2);
         stage.setY((screenBounds.getHeight() - 1150) / 2);
 
         stage.setScene(new Scene(parent));

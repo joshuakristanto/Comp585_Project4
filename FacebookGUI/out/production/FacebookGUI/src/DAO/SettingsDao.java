@@ -189,6 +189,20 @@ public class SettingsDao {
         }
     }
 
+    // Update userName
+    public static void updateUserName(String UserName, String newUserName) throws SQLException, ClassNotFoundException{
+
+        //Update stmt
+        String updateStmt = "UPDATE Settings SET UserName = " + "'" + newUserName + "'"  + "WHERE UserName = " + "'" + UserName + "'";
+
+        try{
+            DbUtil.dbExecuteUpdate(updateStmt);
+        }catch (SQLException e){
+            System.out.println("Error occurred while updating username to " + newUserName );
+        }
+
+    }
+
     // Delete User from Settings
     public static void deleteUserFromSettings(String UserName) throws SQLException, ClassNotFoundException {
 
