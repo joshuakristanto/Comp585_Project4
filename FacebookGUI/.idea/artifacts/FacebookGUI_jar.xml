@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FacebookGUI:jar">
+    <output-path>$PROJECT_DIR$/../Build</output-path>
+    <root id="archive" name="FacebookGUI.jar">
+      <element id="module-output" name="FacebookGUI" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/libraries/sqlite-jdbc-3.23.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
