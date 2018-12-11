@@ -18,6 +18,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import DAO.*;
@@ -66,14 +67,17 @@ public class SignUpPageController {
     @FXML
     private Label passwordDoesntMatch;
 
+    public void init(){
+        sign_up_birthday.setStyle("-fx-font-size: 20px;");
+    }
+
     
     @FXML
     private void registerUser (ActionEvent event) throws Exception{
-        //TODO Using DAO objects pass data to DB
-        //TODO Let user know if account creation was successful
-
         String encryptedPassword = PasswordEncryption.generatePassword(getPassword());
         ProfilesDao.addProfile(getFirstName(), getLastName(), getBirthday(), getUserName(), getEmail(), encryptedPassword, "", "Y");
+        // user will be added to the settings table
+        SettingsDao.addUserToSettings(getUserName());
 
         Parent signUpPageParent = FXMLLoader.load(getClass().getResource("login_page.fxml"));
         Scene signUpPageScene = new Scene(signUpPageParent);
@@ -83,6 +87,7 @@ public class SignUpPageController {
         stage.setX((screenBounds.getWidth() - 720) / 2);
         stage.setY((screenBounds.getHeight() - 720) / 2);
 
+
         stage.setResizable(false);
         stage.setScene(signUpPageScene);
         stage.show();
@@ -90,8 +95,6 @@ public class SignUpPageController {
     
     @FXML
     private void cancelRegistration (ActionEvent event) throws Exception{
-
-        //TODO Prompt user if they are sure they want to cancel registration
 
         System.out.println("Cancel button pressed");
         Parent signUpPageParent = FXMLLoader.load(getClass().getResource("login_page.fxml"));
@@ -129,23 +132,30 @@ public class SignUpPageController {
 
     @FXML
     private void checkUsername() {
-        try{
-            // Checks if username is in the DB
-            ObservableList<Profiles> prof = ProfilesDao.searchProfiles(getUserName());
+        if(sign_up_username.getText().length() < 5){
+            Tooltip tooltip = new Tooltip("Username must be at least 6 characters.");
+            tooltip.activatedProperty();
+            sign_up_username.setTooltip(tooltip);
+            sign_up_username.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
+        }else{
+            try{
+                // Checks if username is in the DB
+                ObservableList<Profiles> prof = ProfilesDao.searchProfiles(getUserName());
 
-            if(prof.size() > 0){ // Username is taken
-                sign_up_username.setStyle("-fx-border-color: red; -fx-text-inner-color: red;");
-                username_avail.setVisible(true);
+                if(prof.size() > 0){ // Username is taken
+                    sign_up_username.setStyle("-fx-border-color: red; -fx-text-inner-color: red;");
+                    username_avail.setVisible(true);
 
-            }else if(sign_up_username.getText().equals("")){
-                sign_up_username.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
-                username_avail.setVisible(false);
-            }else{
-                sign_up_username.setStyle("-fx-border-color: #00FF3C; -fx-text-inner-color: #00FF3C;");
-                username_avail.setVisible(false);
+                }else if(sign_up_username.getText().equals("")){
+                    sign_up_username.setStyle("-fx-border-color: #DCDCDC; -fx-text-inner-color: black;");
+                    username_avail.setVisible(false);
+                }else{
+                    sign_up_username.setStyle("-fx-border-color: #00FF3C; -fx-text-inner-color: #00FF3C;");
+                    username_avail.setVisible(false);
+                }
+            } catch (Exception e){
+
             }
-        } catch (Exception e){
-
         }
     }
 
